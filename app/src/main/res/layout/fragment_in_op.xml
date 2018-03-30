@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="yantai.yidian.warehouse.InOpFragment">
 
@@ -12,12 +13,12 @@
         android:padding="10dp"
         android:layout_marginTop="10dp">
 
-
         <LinearLayout
             android:id="@+id/product_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/op_bg_selector"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -39,6 +40,7 @@
             android:id="@+id/purchase_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -60,6 +62,7 @@
             android:id="@+id/return_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -87,6 +90,7 @@
             android:id="@+id/scatter_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -107,6 +111,7 @@
             android:id="@+id/product_return_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -130,6 +135,7 @@
             android:id="@+id/empty_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -159,6 +165,7 @@
             android:id="@+id/productline_waste_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -181,6 +188,7 @@
             android:id="@+id/move_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -201,6 +209,7 @@
             android:id="@+id/warehouse_waste_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/op_bg_selector"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
