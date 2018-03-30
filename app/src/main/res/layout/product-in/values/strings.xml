@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="product_in_ware">生产入库</string>
+    <string name="pro_type_choose">产品类型选择</string>
+    <string name="a_ware">A类仓库</string>
+    <string name="b_ware">B类仓库</string>
+    <string name="as_ware">AS类仓库</string>
+    <string name="enter">确定</string>
+    <string name="next">下一步</string>
+</resources>

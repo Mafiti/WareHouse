@@ -1,6 +1,7 @@
 package yantai.yidian.warehouse;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import yantai.yidian.warehouse.productIn.ProductInActivity;
 
 
 /**
@@ -78,6 +81,7 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             //生产入库
             case R.id.product_in:
+                startActivity(new Intent(getActivity(),ProductInActivity.class));
                 llyt_product_in.setSelected(true);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
