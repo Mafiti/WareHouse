@@ -42,6 +42,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile(name: 'titleview-1.2', ext: 'aar')
     compile(name: 'buttonview-1.1', ext: 'aar')
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
+    compile 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+    compile 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
