@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="yantai.yidian.warehouse.productIn.Help01Activity">
+
+
+    <com.mondschein.titleview.TitleView
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        app:title_text = "系统推荐库位规则"
+        app:title_color = "#000000"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="          生产入库时开具生产入库单"
+        android:textSize="20dp"
+        android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

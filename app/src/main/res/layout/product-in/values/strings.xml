@@ -8,6 +8,12 @@
     <string name="enter">确定</string>
     <string name="next">下一步</string>
 
+    <string name="title_ruku">生产入库—库位选择</string>
+    <string name="tablename1">库位</string>
+    <string name="tablename2">容量</string>
+    <string name="tablename3">存货</string>
+    <string name="tablename4">剩余</string>
+
     <string name="table">XXXXXX</string>
     <string name="in_house_num">入库箱数:</string>
     <string name="in_num">XXxx</string>

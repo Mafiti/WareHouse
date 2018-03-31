@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e8e8e7"
+    tools:context="yantai.yidian.warehouse.productIn.LocationSelectActivity">
+
+    <com.mondschein.titleview.TitleView
+        android:id="@+id/titleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_text = "@string/title_ruku"
+        app:title_color = "@android:color/black">
+    </com.mondschein.titleview.TitleView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleView"
+        android:layout_above="@id/buttonbottom"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+        <LinearLayout
+            android:id="@+id/tableTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/blank"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"/>
+            <TextView
+                android:id="@+id/tablename1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:text="@string/tablename1"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/tablename2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:text="@string/tablename2"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/tablename3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:text="@string/tablename3"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/tablename4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:text="@string/tablename4"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp">
+        </ListView>
+    </LinearLayout>
+
+    <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/buttonbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:btn_src = "@mipmap/ch"
+        app:btn_text = "确定"
+        app:btn_text_size = "18"
+        app:btn_text_color = "@android:color/black" />
+
+</RelativeLayout>

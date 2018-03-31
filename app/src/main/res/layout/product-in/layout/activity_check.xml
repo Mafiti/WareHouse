@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="库内质检"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+    </android.support.v7.widget.Toolbar>-->
+
+    <com.mondschein.titleview.TitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_text = "库内质检"
+
+        app:title_color = "@android:color/black"
+
+        >
+    </com.mondschein.titleview.TitleView>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_marginTop="200dp"
+        android:textSize="17sp"
+        android:id="@+id/spinner1" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_marginTop="270dp"
+        android:textSize="17sp"
+        android:id="@+id/spinner2" />
+
+    <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/buttonbottom1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:btn_src = "@mipmap/ch"
+        app:btn_text = "确定"
+        app:btn_text_size = "18"
+        app:btn_text_color = "#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="质检人员："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="290dp"
+        android:textSize="17sp" />
+
+    <TextView
+        android:text="质检角色："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="220dp"
+        android:textSize="17sp" />
+
+    <TextView
+        android:text="是否质检："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="150dp"
+        android:id="@+id/textView1"
+        android:textSize="17sp"
+        />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="146dp"
+        android:layout_toRightOf="@id/textView1"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RadioButton1"
+            android:textSize="17sp"
+            android:text="是" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RadioButton2"
+            android:textSize="17sp"
+            android:layout_toRightOf="@id/RadioButton1"
+            android:layout_marginLeft="20dp"
+            android:text="否" />
+    </RadioGroup>
+</RelativeLayout>
