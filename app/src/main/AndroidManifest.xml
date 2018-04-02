@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".productIn.LocationSelectActivity"/>
 
+        
         <activity android:name=".productIn.Help01Activity"></activity>
     </application>
 
