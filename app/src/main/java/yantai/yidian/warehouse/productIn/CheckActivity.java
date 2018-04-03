@@ -1,5 +1,6 @@
 package yantai.yidian.warehouse.productIn;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,16 +14,18 @@ import android.widget.Toast;
 import com.example.mondschein.btnview.ButtonView;
 
 import yantai.yidian.warehouse.R;
+import yantai.yidian.warehouse.productIn.produce_table.Product_sub;
 
 public class CheckActivity extends AppCompatActivity {
 
-    private ButtonView buttonbottom1;
     private RadioButton RadioButton1;
     private RadioButton RadioButton2;
     private Spinner Spinner1;
     private Spinner Spinner2;
     private RadioGroup RadioGroup1;
     private ArrayAdapter<String> roleAdapter,staffAdapter;
+    private ButtonView buttonbottom1;
+
     private String[] role = {"所有角色","A类","B类","C类"};
     private String[][] staff = {{"所有员工"},{"A类一号","A类二号","A类三号"},{"B类一号","B类二号","B类三号"},{"C类一号","C类二号","C类三号"}};
     private int rolePosition,staffposition;
@@ -97,7 +100,13 @@ public class CheckActivity extends AppCompatActivity {
 
             }
         };
-        buttonbottom1.setButtonListener(listener);
+        buttonbottom1.setButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CheckActivity.this, Product_sub.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

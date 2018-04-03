@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_select"
+    android:clickable="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,74 +15,87 @@
         app:title_text = "生产入库-库位选择"
         app:title_color = "#000000"/>
     <RelativeLayout
+        android:id="@+id/system_relative"
+        android:background="@drawable/system1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="138dp"
-            android:src="@drawable/system1"/>
-        <ImageButton
-            android:id="@+id/imageView"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
-            android:src="@drawable/question1"
-            android:layout_marginLeft="320dp"
-            android:layout_marginTop="8dp"/>
-        <TextView
-            android:id="@+id/textview1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="B103"
-            android:textSize="25sp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            />
 
+        <Button
+            android:id="@+id/btn_help_system"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="308dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/question" />
         <RadioButton
-            android:id="@+id/rb1"
+            android:id="@+id/rb_system_ware_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:layout_marginLeft="230dp"
-            android:layout_marginTop="53dp" />
-
-
+            android:background="@drawable/system_unselect"
+            android:layout_centerInParent="true"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:text="B102"
+            android:textColor="#e27e66"
+            android:button="@null"
+            />
+        <TextView
+            android:id="@+id/system_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="该库位已放同批次产品箱数为:***箱"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:layout_marginTop="103dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="库存容量为:***箱,还能放该产品***箱"
+            android:textSize="12sp"
+            />
     </RelativeLayout>
 
+
+
     <RelativeLayout
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/system_relative"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
+        android:layout_height="wrap_content"
+        android:background="@drawable/people"
+
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <EditText
+            android:id="@+id/people_edittext"
             android:layout_width="wrap_content"
-            android:layout_height="138dp"
-            android:src="@drawable/people"
-            android:layout_alignParentTop="true"
+            android:layout_height="wrap_content"
+            android:background="@drawable/people_select"
+            android:layout_marginLeft="119.5dp"
+            android:layout_centerVertical="true"
+            android:textSize="25sp"
+            android:textColor="#e27e66"
+            android:gravity="center"
+            android:text="B102"
+            android:inputType="text"
+            android:imeOptions="actionDone"
             />
 
-        <LinearLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_width="0px"
-            android:layout_height="0px"
+        <Button
+            android:id="@+id/btn_people_select"
+            android:layout_alignTop="@id/people_edittext"
+            android:layout_alignBottom="@id/people_edittext"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/people_edittext"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:background="@drawable/search2"
             />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:background="#FFFFFF"
-            android:ems="10"
-            android:inputType="text"
-            android:maxLines="1"
-            android:id="@+id/editText"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="70dp"
-            />
-        <ImageButton
-            android:id="@+id/search2"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:src="@drawable/search2"
-            android:layout_toRightOf="@+id/editText"
-            android:layout_marginTop="50dp"/>
     </RelativeLayout>
 
 
@@ -93,12 +108,14 @@
         <com.example.mondschein.btnview.ButtonView
             android:id="@+id/buttonbottom"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="wrap_content"
             app:btn_src = "@mipmap/ch"
             app:btn_text = "确定"
             app:btn_text_size = "18"
             app:btn_text_color = "#ffffff"
             />
+
     </LinearLayout>
 
 </LinearLayout>
+

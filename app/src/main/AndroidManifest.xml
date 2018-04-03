@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="yantai.yidian.warehouse">
 
+    <!-- zxing权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!--网络权限-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,9 +22,25 @@
             </intent-filter>
         </activity>
         <activity android:name=".productIn.ProductInActivity" />
-        <activity android:name=".productIn.WareChooseActivity" />
-        <activity android:name=".productIn.LocationSelectAutoOrManualActivity" />
-        <activity android:name=".productIn.Help01Activity"></activity>
+        <activity android:name=".productIn.WareChooseActivity" >
+
+        </activity>
+        <activity android:name=".productIn.LocationSelectActivity" />
+        <activity android:name=".productIn.LocationSelectAutoOrManualActivity"></activity>
+        <activity android:name=".productIn.Help01Activity" />
+        <activity android:name=".scan.ScanActivity" />
+        <activity android:name=".productIn.CheckActivity"/>
+        <activity
+            android:name=".productIn.produce_table.Product"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".productIn.produce_table.Product_table"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".productIn.produce_table.Product_sub"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".productIn.SpecificWareSelectActivity" />
+        <activity android:name=".productIn.feedback.ScanSuccessFeedbackActivity"></activity>
     </application>
 
 </manifest>

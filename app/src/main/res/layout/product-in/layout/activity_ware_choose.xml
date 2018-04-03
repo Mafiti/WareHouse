@@ -63,6 +63,7 @@
         android:button="@null"
         android:gravity="center"
         />
+
     <RadioButton
         android:id="@+id/btn_..._ware"
         android:layout_below="@id/btn_as_ware"
@@ -75,6 +76,7 @@
         android:button="@null"
         />
     <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/btn_production_type_next"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

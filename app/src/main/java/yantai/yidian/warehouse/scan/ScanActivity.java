@@ -23,6 +23,8 @@ import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
 import yantai.yidian.warehouse.R;
+import yantai.yidian.warehouse.productIn.CheckActivity;
+import yantai.yidian.warehouse.productIn.WareChooseActivity;
 import yantai.yidian.warehouse.productIn.produce_table.Product_sub;
 import yantai.yidian.warehouse.productIn.produce_table.Product_table;
 
@@ -52,7 +54,9 @@ public class ScanActivity extends AppCompatActivity implements QRCodeView.Delega
         scanComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ScanActivity.this, Product_sub.class));
+                //startActivity(new Intent(ScanActivity.this, Product_sub.class));
+                //扫码完成该跳转到质检界面
+                startActivity(new Intent(ScanActivity.this, CheckActivity.class));
             }
         });
         btn_back = (TitleView)findViewById(R.id.back);
@@ -100,11 +104,12 @@ public class ScanActivity extends AppCompatActivity implements QRCodeView.Delega
         Log.i(TAG, "result:" + result);
         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         vibrate();
-        Intent intent=new Intent();
+        Intent intent=new Intent(ScanActivity.this, WareChooseActivity.class);
         intent.putExtra("data_return",result);
         setResult(RESULT_OK,intent);
         mQRCodeView.startSpot();
-        finish();
+        //finish();
+        startActivity(intent);
     }
 
     @Override

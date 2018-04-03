@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="yantai.yidian.warehouse.productIn.feedback.ScanSuccessFeedbackActivity">
+
+    <com.mondschein.titleview.TitleView
+        android:id="@+id/title_pur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:visibility="visible"
+        app:title_text="生产入库-扫码">
+
+    </com.mondschein.titleview.TitleView>
+
+    <RelativeLayout
+        android:id="@+id/second"
+        android:layout_below="@id/title_pur"
+        android:layout_width="match_parent"
+        android:background="#E4ECF3"
+        android:layout_height="34dp">
+        <TextView
+            android:id="@+id/tv_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="13sp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/second"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F9FBFD"
+
+        >
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/right"
+            >
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="120dp"
+                android:text="扫码成功"
+                android:textColor="#000000"
+                android:textSize="29sp"
+                />
+
+
+        </RelativeLayout>
+
+</RelativeLayout>
+    <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/btn_scan_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:btn_src = "@mipmap/ch"
+        app:btn_text = "确定"
+        android:layout_alignParentBottom="true"
+        app:btn_text_size = "18"
+        app:btn_text_color = "#ffffff"
+        />
+</RelativeLayout>

@@ -44,12 +44,13 @@ public class ProductInActivity extends AppCompatActivity implements View.OnClick
         buttonView.setButtonListener(new View.OnClickListener() {
                                          @Override
                                          public void onClick(View view) {
-                                             startActivity(new Intent(ProductInActivity.this,WareChooseActivity.class));
+                                             startActivity(new Intent(ProductInActivity.this,SpecificWareSelectActivity.class));
                                          }
                                      }
         );
 
     }
+
 
 
     @Override

@@ -1,5 +1,6 @@
 package yantai.yidian.warehouse.productIn;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,6 +43,8 @@ public class LocationSelectActivity extends AppCompatActivity {
                         +" "+selecedLocationInfo.getLacation()+" "
                         +selecedLocationInfo.getCapacity()+" "+selecedLocationInfo.getInventory()
                         +" "+selecedLocationInfo.getRemainingSpace(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LocationSelectActivity.this,LocationSelectAutoOrManualActivity.class);
+                startActivity(intent);
 
             }
         });

@@ -4,23 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.example.mondschein.btnview.ButtonView;
+
 import yantai.yidian.warehouse.R;
+import yantai.yidian.warehouse.productIn.feedback.ScanSuccessFeedbackActivity;
 
 public class LocationSelectAutoOrManualActivity extends AppCompatActivity {
 
-    private ImageButton imbu;
-    TextView responseText;
-    EditText testview1;
-    RadioButton rb;
-    ImageButton help;
+    private ButtonView btn_sure;
+    private Button btn_people_select;
+
     private void closeKeyboard() {
         View view = getWindow().peekDecorView();
         if (view != null) {
@@ -32,9 +35,34 @@ public class LocationSelectAutoOrManualActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_select_auto_or_manual);
-        help=(ImageButton) findViewById(R.id.imageView);
+        initView();
+
+        btn_sure.setButtonListener(new View.OnClickListener() {
+                                                  @Override
+                                                  public void onClick(View view) {
+                                                      startActivity(new Intent(LocationSelectAutoOrManualActivity.this,ScanSuccessFeedbackActivity.class));
+                                                  }
+                                              }
+        );
+
+        btn_people_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v==btn_people_select)
+                {
+                    Intent intent = new Intent(LocationSelectAutoOrManualActivity.this, LocationSelectActivity.class);
+                    startActivity(intent);
+                    LocationSelectAutoOrManualActivity.this.finish();
+                }
+            }
+        });
+
+       /* help=(ImageButton) findViewById(R.id.imageView);
         testview1=(EditText) findViewById(R.id.editText);
         rb = (RadioButton) findViewById(R.id.rb1);
+        search2 = (ImageButton) findViewById(R.id.search2);
+
+
         testview1.setOnTouchListener(new View.OnTouchListener() {
             //按住和松开的标识
             int touch_flag=0;
@@ -73,7 +101,27 @@ public class LocationSelectAutoOrManualActivity extends AppCompatActivity {
             }
         });
 
+        search2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v==search2)
+                {
+                    Intent intent = new Intent(LocationSelectAutoOrManualActivity.this, LocationSelectActivity.class);
+                    startActivity(intent);
+                    LocationSelectAutoOrManualActivity.this.finish();
+                }
+            }
+        });
+        */
+
     }
+
+    public void initView(){
+        btn_sure = (ButtonView) findViewById(R.id.buttonbottom);
+        btn_people_select = (Button) findViewById(R.id.btn_people_select);
+    }
+
+
 
     /*private void sendRequestWithHttpURLConnection(){
         new Thread(new Runnable() {
