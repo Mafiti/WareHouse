@@ -16,27 +16,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="22dp"
+        android:textSize="16dp"
         android:textAlignment="center"/>
     <TextView
         android:id="@+id/item_capacity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="22dp"
+        android:textSize="18dp"
         android:textAlignment="center"/>
     <TextView
         android:id="@+id/item_inventory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="22dp"
+        android:textSize="18dp"
         android:textAlignment="center"/>
     <TextView
         android:id="@+id/item_remainingSpace"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="22dp"
+        android:textSize="18dp"
         android:textAlignment="center"/>
 </LinearLayout>

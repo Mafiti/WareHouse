@@ -13,4 +13,6 @@
 
     <color name="table_gray">#f0f1f3</color>
     <color name="produce_background">#f9fbfd</color>
+    <color name="text_choose_color">#f7fcfd</color>
+    <color name="text_unchoose_color">#e27e66</color>
 </resources>
