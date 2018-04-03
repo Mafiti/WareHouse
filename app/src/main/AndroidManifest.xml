@@ -41,7 +41,6 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".productIn.SpecificWareSelectActivity" />
         <activity android:name=".productIn.feedback.ScanSuccessFeedbackActivity"></activity>
-
     </application>
 
 </manifest>

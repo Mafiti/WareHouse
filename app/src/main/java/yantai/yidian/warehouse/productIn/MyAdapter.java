@@ -60,10 +60,10 @@ public class MyAdapter extends BaseAdapter {
             viewHolder= (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.location.setText(locationInfoList.get(position).getLocation());
-        viewHolder.capacity.setText("" +locationInfoList.get(position).getCapacity());
-        viewHolder.inventory.setText(""+locationInfoList.get(position).getInventory());
-        viewHolder.remainingSpace.setText(""+locationInfoList.get(position).getRemainingSpace());
+        viewHolder.location.setText(locationInfoList.get(position).getLacation());
+        viewHolder.capacity.setText(locationInfoList.get(position).getCapacity());
+        viewHolder.inventory.setText(locationInfoList.get(position).getInventory());
+        viewHolder.remainingSpace.setText(locationInfoList.get(position).getRemainingSpace());
         if(getSelectPosition()==position){
             viewHolder.select.setChecked(true);
         }else

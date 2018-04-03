@@ -25,7 +25,6 @@ public class LocationSelectActivity extends AppCompatActivity {
     private LocationInfo selecedLocationInfo;
     private Map<String,Object> selectedInfo;
 
-
     public static int getSelectPosition() {
         return selectPosition;
     }
@@ -40,9 +39,8 @@ public class LocationSelectActivity extends AppCompatActivity {
         buttonView.setButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Toast.makeText(LocationSelectActivity.this,"你选择了第"+(selectPosition+1)+"行："
-                        +" "+selecedLocationInfo.getLocation()+" "
+                        +" "+selecedLocationInfo.getLacation()+" "
                         +selecedLocationInfo.getCapacity()+" "+selecedLocationInfo.getInventory()
                         +" "+selecedLocationInfo.getRemainingSpace(),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LocationSelectActivity.this,LocationSelectAutoOrManualActivity.class);
@@ -53,8 +51,6 @@ public class LocationSelectActivity extends AppCompatActivity {
 
         listView=(ListView)findViewById(R.id.listview);
         //MyAdapter
-
-
         initArrayAdapterData();
         myAdapter=new MyAdapter(this,data_list);
         listView.setAdapter(myAdapter);
@@ -64,35 +60,31 @@ public class LocationSelectActivity extends AppCompatActivity {
                 selectPosition=position;
                 myAdapter.notifyDataSetChanged();
                 selecedLocationInfo=data_list.get(position);
-                Intent intent1 = new Intent();
-                intent1.putExtra("location",selecedLocationInfo.getLocation());
-                setResult(2,intent1);
-
+                Toast.makeText(LocationSelectActivity.this,selecedLocationInfo.getLacation()+" "
+                        +selecedLocationInfo.getCapacity()+" "+selecedLocationInfo.getInventory()
+                        +" "+selecedLocationInfo.getRemainingSpace(),Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void initArrayAdapterData(){
-
-        Intent intent = this.getIntent();
-        data_list = intent.getParcelableArrayListExtra("locationInfoList");
-
-//        LocationInfo li0=new LocationInfo("B103","100","85","15");
-//        LocationInfo li1=new LocationInfo("B104","100","67","33");
-//        LocationInfo li2=new LocationInfo("B105","100","55","45");
-//        LocationInfo li3=new LocationInfo("B106","100","43","57");
-//        LocationInfo li4=new LocationInfo("A210","100","0","100");
-//        LocationInfo li5=new LocationInfo("A211","100","0","100");
-//        LocationInfo li6=new LocationInfo("A301","100","0","100");
-//        LocationInfo li7=new LocationInfo("A305","100","0","100");
-//        data_list.add(li0);
-//        data_list.add(li1);
-//        data_list.add(li2);
-//        data_list.add(li3);
-//        data_list.add(li4);
-//        data_list.add(li5);
-//        data_list.add(li6);
-//        data_list.add(li7);
+        data_list=new ArrayList<>();
+        LocationInfo li0=new LocationInfo("B103","100","85","15");
+        LocationInfo li1=new LocationInfo("B104","100","67","33");
+        LocationInfo li2=new LocationInfo("B105","100","55","45");
+        LocationInfo li3=new LocationInfo("B106","100","43","57");
+        LocationInfo li4=new LocationInfo("A210","100","0","100");
+        LocationInfo li5=new LocationInfo("A211","100","0","100");
+        LocationInfo li6=new LocationInfo("A301","100","0","100");
+        LocationInfo li7=new LocationInfo("A305","100","0","100");
+        data_list.add(li0);
+        data_list.add(li1);
+        data_list.add(li2);
+        data_list.add(li3);
+        data_list.add(li4);
+        data_list.add(li5);
+        data_list.add(li6);
+        data_list.add(li7);
     }
 
 }
