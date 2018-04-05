@@ -2,6 +2,7 @@ package yantai.yidian.warehouse.log;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,9 +33,20 @@ public class LauncherActivity extends AppCompatActivity implements WareApi{
 
         initData();
 
+//        //若是不是第一次登陆，直接跳转主界面
+//        SharedPreferences sp = getSharedPreferences("settings", MODE_PRIVATE);
+//        boolean isFirstRun = sp.getBoolean("isFirstLog", true);
+//        if(!isFirstRun){
+//            startActivity(new Intent(LauncherActivity.this,MainActivity.class));
+//            finish();
+//        }
+
         btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 String userName = edit_name.getText().toString();
                 String pwd = edit_pwd.getText().toString();
                 ParamBuilder builder = new ParamBuilder();
@@ -47,6 +59,14 @@ public class LauncherActivity extends AppCompatActivity implements WareApi{
                     @Override
                     public void onFinish(String response) {
                         startActivity(new Intent(LauncherActivity.this, MainActivity.class));
+
+//                        //标记不是首次运行
+//                        SharedPreferences sp = getSharedPreferences("settings", Context.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sp.edit();
+//                        editor.putBoolean("isFirstLog", false);
+//                        editor.commit();
+//                        //销毁当前Activity
+//                        finish();
                         Log.d(TAG, "onFinish: "+ response.toString());
                     }
 
