@@ -1,8 +1,11 @@
 package yantai.yidian.warehouse.log;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +14,14 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import yantai.yidian.warehouse.MainActivity;
 import yantai.yidian.warehouse.R;
+import yantai.yidian.warehouse.productIn.LocationSelectAutoOrManualActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
 import yantai.yidian.warehouse.util.ParamBuilder;
@@ -25,6 +33,7 @@ public class LauncherActivity extends AppCompatActivity implements WareApi{
     private Button btn_log;
     private EditText edit_name;
     private EditText edit_pwd;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +63,16 @@ public class LauncherActivity extends AppCompatActivity implements WareApi{
                 builder.add(PAREM_password,pwd);
                 String parem = builder.build();
                 String url = URL_LOGIN + parem.toString();
-                Log.d(TAG, "onClick: "+url);
+               // Log.d(TAG, "onClick: "+url);
                 HttpPost.sendHttpRequest(url, "", new HttpCallbackListener() {
                     @Override
                     public void onFinish(String response) {
-                        startActivity(new Intent(LauncherActivity.this, MainActivity.class));
+                        Message msg = Message.obtain();
+                        msg.what = 0;
+                        msg.obj = response;
+                        handler.sendMessage(msg);
+
+
 
 //                        //标记不是首次运行
 //                        SharedPreferences sp = getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -67,7 +81,7 @@ public class LauncherActivity extends AppCompatActivity implements WareApi{
 //                        editor.commit();
 //                        //销毁当前Activity
 //                        finish();
-                        Log.d(TAG, "onFinish: "+ response.toString());
+                      //  Log.d(TAG, "onFinish: "+ response.toString());
                     }
 
                     @Override
@@ -95,8 +109,36 @@ public class LauncherActivity extends AppCompatActivity implements WareApi{
         btn_log = (Button) findViewById(R.id.btn_log);
         edit_name = (EditText) findViewById(R.id.edit_name);
         edit_pwd = (EditText) findViewById(R.id.edit_pwd);
+        handler = new InnerHandler();
     }
 
+
+    @SuppressLint("HandlerLeak")
+    class InnerHandler extends Handler {
+
+        @Override
+        public void handleMessage(Message msg) {
+            // 获取响应的正文
+            String responseLoc = (String) msg.obj;
+            // 将正文转换为Json对象
+            JSONObject jsonLoc = null;
+            try {
+                jsonLoc = new JSONObject(responseLoc);
+                int status = jsonLoc.getInt("status");
+                String result = jsonLoc.getString("result");
+               // Log.d(TAG, "handleMessage: "+result);
+                if (status == 0) {
+                    startActivity(new Intent(LauncherActivity.this, MainActivity.class));
+                }else {
+                    Toast.makeText(LauncherActivity.this,result.toString(),Toast.LENGTH_SHORT);
+                }
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
 
 
