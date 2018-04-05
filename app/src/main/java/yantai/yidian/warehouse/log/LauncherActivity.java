@@ -1,22 +1,66 @@
 package yantai.yidian.warehouse.log;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 
+import yantai.yidian.warehouse.MainActivity;
 import yantai.yidian.warehouse.R;
+import yantai.yidian.warehouse.util.HttpCallbackListener;
+import yantai.yidian.warehouse.util.HttpPost;
+import yantai.yidian.warehouse.util.ParamBuilder;
+import yantai.yidian.warehouse.util.WareApi;
 
-public class LauncherActivity extends AppCompatActivity {
+public class LauncherActivity extends AppCompatActivity implements WareApi{
+    private static final String TAG = "LauncherActivity";
+
+    private Button btn_log;
+    private EditText edit_name;
+    private EditText edit_pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
+        initData();
+
+        btn_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userName = edit_name.getText().toString();
+                String pwd = edit_pwd.getText().toString();
+                ParamBuilder builder = new ParamBuilder();
+                builder.add(PARAM_userid,userName);
+                builder.add(PAREM_password,pwd);
+                String parem = builder.build();
+                String url = URL_LOGIN + parem.toString();
+                Log.d(TAG, "onClick: "+url);
+                HttpPost.sendHttpRequest(url, "", new HttpCallbackListener() {
+                    @Override
+                    public void onFinish(String response) {
+                        startActivity(new Intent(LauncherActivity.this, MainActivity.class));
+                        Log.d(TAG, "onFinish: "+ response.toString());
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.d(TAG, "onError: " + e.toString());
+                    }
+                });
+            }
+        });
+
+
+
+        //使edittext失去焦点
         findViewById(R.id.launcher_layout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +70,16 @@ public class LauncherActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void initData(){
+        btn_log = (Button) findViewById(R.id.btn_log);
+        edit_name = (EditText) findViewById(R.id.edit_name);
+        edit_pwd = (EditText) findViewById(R.id.edit_pwd);
+    }
+
+
+
+
 
 
     //关闭键盘
