@@ -58,12 +58,10 @@ public class SpecificWareAdapter extends BaseAdapter {
 
         SpecificWareBean specificWareBean = list.get(position);
         TextView tv_ware_name = (TextView) view.findViewById(R.id.item_ware_name);
-        TextView tv_organization = (TextView) view.findViewById(R.id.item_organization);
-        TextView tv_use_tag = (TextView) view.findViewById(R.id.item_use_tag);
+        TextView tv_organization = (TextView) view.findViewById(R.id.item_ware_id);
 
         tv_ware_name.setText(specificWareBean.ware_name);
-        tv_organization.setText(specificWareBean.organization);
-        tv_use_tag.setText(specificWareBean.use_tag);
+        tv_organization.setText(specificWareBean.ware_id);
 
         return view;
     }

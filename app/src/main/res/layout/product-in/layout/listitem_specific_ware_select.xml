@@ -15,7 +15,7 @@
         android:gravity="center"
         android:layout_weight="0.5" />
     <TextView
-        android:id="@+id/item_ware_name"
+        android:id="@+id/item_ware_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
@@ -23,7 +23,7 @@
         android:textSize="17sp"
         android:textAlignment="center"/>
     <TextView
-        android:id="@+id/item_organization"
+        android:id="@+id/item_ware_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"

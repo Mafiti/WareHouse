@@ -42,23 +42,7 @@ public class ScanActivity extends AppCompatActivity implements QRCodeView.Delega
         if (getSupportActionBar() != null){
             getSupportActionBar().hide();
         }
-        TextView listinfo = (TextView)findViewById(R.id.table_detail);
-        TextView scanComplete = (TextView)findViewById(R.id.scan_finish);
-        listinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ScanActivity.this, Product_table.class));
-            }
-        });
 
-        scanComplete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //startActivity(new Intent(ScanActivity.this, Product_sub.class));
-                //扫码完成该跳转到质检界面
-                startActivity(new Intent(ScanActivity.this, CheckActivity.class));
-            }
-        });
         btn_back = (TitleView)findViewById(R.id.back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,17 +88,16 @@ public class ScanActivity extends AppCompatActivity implements QRCodeView.Delega
         Log.i(TAG, "result:" + result);
         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         vibrate();
-        Intent intent=new Intent(ScanActivity.this, WareChooseActivity.class);
+        Intent intent=new Intent();
         intent.putExtra("data_return",result);
         setResult(RESULT_OK,intent);
         mQRCodeView.startSpot();
-        //finish();
-        startActivity(intent);
+        finish();
     }
 
     @Override
     public void onScanQRCodeOpenCameraError() {
-        Log.e(TAG, "打开相机出错");
+        Toast.makeText(this,"错误",Toast.LENGTH_SHORT).show();
     }
 
     public void onClick(View v) {
@@ -248,6 +231,7 @@ public class ScanActivity extends AppCompatActivity implements QRCodeView.Delega
             }
         }
     }
+
 
 
 }

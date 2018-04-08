@@ -17,6 +17,7 @@ import yantai.yidian.warehouse.bean.ProductBean;
 
 /**
  * Created by 李非 on 2018/3/30.
+ * 加载入库产品到RecyclerView中显示出来
  */
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
@@ -24,19 +25,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private List<ProductBean> mproductList;
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView box_num;
-        TextView produce_line;
+        TextView dev_id_table;
         TextView class_time;
         TextView item_number;
-        TextView product_time;
+        TextView batch_table;
         TextView location;
         public ViewHolder(View view)
         {
             super(view);
             box_num=(TextView)view.findViewById(R.id.box_num);
-            produce_line=(TextView)view.findViewById(R.id.produce_line);
+            dev_id_table=(TextView)view.findViewById(R.id.dev_id_table);
             class_time=(TextView)view.findViewById(R.id.class_time);
             item_number=(TextView)view.findViewById(R.id.item_number);
-            product_time=(TextView)view.findViewById(R.id.product_time);
+            batch_table=(TextView)view.findViewById(R.id.batch_table);
             location=(TextView)view.findViewById(R.id.location);
         }
     }
@@ -57,9 +58,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     {
         ProductBean productBean=mproductList.get(position);
         holder.box_num.setText(productBean.getBox_num());
-        holder.produce_line.setText(productBean.getProduct_line());
-        holder.product_time.setText(productBean.getProduct_time());
-        holder.item_number.setText(productBean.getItem_number().toString());
+        holder.dev_id_table.setText(productBean.getDev_id()+"#线");
+        holder.batch_table.setText(productBean.getBatch());
+        holder.item_number.setText(productBean.getItem_number()+"");
         holder.class_time.setText(productBean.getClasss_time());
         holder.location.setText(productBean.getLocation());
     }

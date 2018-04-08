@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,8 @@ import yantai.yidian.warehouse.R;
 import yantai.yidian.warehouse.adapter.SpecificWareAdapter;
 import yantai.yidian.warehouse.bean.SpecificWareBean;
 import yantai.yidian.warehouse.scan.ScanActivity;
+import yantai.yidian.warehouse.util.HttpCallbackListener;
+import yantai.yidian.warehouse.util.HttpPost;
 import yantai.yidian.warehouse.util.ParamBuilder;
 import yantai.yidian.warehouse.util.WareApi;
 
@@ -52,21 +55,15 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_specific_ware_select);
+        getPost();
         //handle用于发送和接受处理message
         handler = new InnerHandler();
         initView();
 
-         /*
-        for (int i = 0;i<10;i++){
-            list.add(new SpecificWareBean("成品库一号","xxx组织",""));
-        }
-        */
         list = new ArrayList<>();
 
         specificWareAdapter = new SpecificWareAdapter(list,this);
         listView.setAdapter(specificWareAdapter);
-        WorkThread thread = new WorkThread();
-        thread.start();
 
         btn_sure.setButtonListener(new View.OnClickListener() {
                                          @Override
@@ -90,7 +87,7 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
             switch (msg.what){
                 //请求失败时，响应码不等于200
                 case RESPONSERESULT_ERROR:
-                    Toast.makeText(SpecificWareSelectActivity.this,"响应码错误"+msg.arg1,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SpecificWareSelectActivity.this,"响应码错误"+msg.obj,Toast.LENGTH_SHORT).show();
                     break;
                 case RESPONSERESULT_SUCCESS:
                     String responseResult = (String) msg.obj;
@@ -99,19 +96,16 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
                         jsonObject = new JSONObject(responseResult);
                         int status = jsonObject.getInt("status");
                         JSONArray array_Store = jsonObject.getJSONArray("store");
-                        JSONArray array_vender = jsonObject.getJSONArray("vender");
                         if (status ==0){
                             for (int i =0;i<array_Store.length();i++){
                                 JSONObject store = array_Store.getJSONObject(i);
-                                JSONObject vender = array_vender.getJSONObject(i);
                                 //store_type到时根据上一个界面选择类型后传进来,现在为了测试填0
                                 if (store.getInt("store_type")==1){
+                                    String ware_id = store.getString("store_id");
                                     String ware_name = store.getString("store_name");
-                                    String organization = vender.getString("vender_name");
                                     specificWareBean = new SpecificWareBean();
+                                    specificWareBean.setWare_id(ware_id);
                                     specificWareBean.setWare_name(ware_name);
-                                    specificWareBean.setOrganization(organization);
-                                    specificWareBean.setUse_tag("");
                                     list.add(specificWareBean);
                                 }
                             }
@@ -128,12 +122,36 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
         }
     }
 
+    public void getPost(){
+        String id = "92D84AAD121190462E763B7D773F144C";
+        String url = URL_PARAMOBTAIN +  "?sessionid="+ id;
+
+        HttpPost.sendHttpRequest(url, "", new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) {
+                Message msg = Message.obtain();
+                msg.what = RESPONSERESULT_SUCCESS;
+                msg.obj = response;
+                handler.sendMessage(msg);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+                Message msg = Message.obtain();
+                msg.what = RESPONSERESULT_ERROR;
+                msg.obj = e;
+                handler.sendMessage(msg);
+            }
+        });
+    }
+
+
+/*
     class WorkThread extends Thread{
         @Override
         public void run() {
-
             String id = "92D84AAD121190462E763B7D773F144C";
-
             //格式转换
             ParamBuilder builder = new ParamBuilder();
             builder.add("sessionid",id);
@@ -170,11 +188,12 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
                     InputStreamReader isr = new InputStreamReader(in);
                     BufferedReader br = new BufferedReader(isr);
                     String responseResult = br.readLine();
+                    String response = URLDecoder.decode(responseResult,"UTF-8");
                     //有关UI操作不能在子线程中进行，须由主线程实现
                     //封装信息，通知主线程更新UI
                     Message msg = Message.obtain();
                     msg.what = RESPONSERESULT_SUCCESS;
-                    msg.obj = responseResult;
+                    msg.obj = response;
                     handler.sendMessage(msg);
                 }
 
@@ -189,5 +208,5 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
             }
         }
     }
-
+*/
 }
