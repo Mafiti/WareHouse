@@ -159,7 +159,6 @@ public class Product_table extends AppCompatActivity {
                     String returnedData=data.getStringExtra("data_return");
                     for(int i=0;i<productBeanList.size();i++)
                     {
-
                         if(productBeanList.get(i).getBox_num().equals(returnedData))
                         {
                             productBeanList.remove(i);
