@@ -64,7 +64,7 @@ public class LocationSelectActivity extends AppCompatActivity {
                 selecedLocationInfo=data_list.get(position);
                 Intent intent1 = new Intent();
                 intent1.putExtra("location",selecedLocationInfo.getLocation());
-                setResult(2,intent1);
+                setResult(RESULT_OK,intent1);
 
             }
         });

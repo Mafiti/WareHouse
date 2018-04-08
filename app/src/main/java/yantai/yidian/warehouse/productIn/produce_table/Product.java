@@ -1,13 +1,16 @@
 package yantai.yidian.warehouse.productIn.produce_table;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,11 +23,15 @@ import net.sf.json.JSONObject;
 import com.example.mondschein.btnview.ButtonView;
 
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import yantai.yidian.warehouse.R;
 import yantai.yidian.warehouse.bean.ProductBean;
+import yantai.yidian.warehouse.productIn.LocationInfo;
+import yantai.yidian.warehouse.productIn.LocationSelectActivity;
 import yantai.yidian.warehouse.scan.ScanActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
@@ -49,6 +56,7 @@ public class Product extends AppCompatActivity {
     private ImageView x3;
     private ImageView x4;
     private int    Box_id;      //箱ID
+    private List<LocationInfo> locationInfoList = locationInfoList = new ArrayList<LocationInfo>();
 
     private int Dev_id;    //产线
     public static String Product_noid;    //产品品号
@@ -113,6 +121,7 @@ public class Product extends AppCompatActivity {
             public void onClick(View view) {
 
                 getPost();
+                getLocate();
             }
         });
         //getPost();
@@ -187,6 +196,17 @@ public class Product extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        select_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("locationInfoList", (ArrayList<LocationInfo>) locationInfoList);
+                intent.putExtras(bundle);
+                intent.setClass(Product.this, LocationSelectActivity.class);
+                startActivityForResult(intent, 2);
+            }
+        });
     }
     protected void getPost()
     {
@@ -258,7 +278,7 @@ public class Product extends AppCompatActivity {
                         Classs_time = item.getString("class_type_name");     //班次
                         Item_number = item.getString("fact_num");     //个数
                         Batch = item.getString("batch");    //生产批次
-                        Location = item.getString("loc_id");    //库位
+                        //Location = item.getString("loc_id");    //库位
                         Log.d(TAG, "onFinish: loading");
                         Message message = new Message();
                         message.what = UPDATE_TEXT;
@@ -289,6 +309,113 @@ public class Product extends AppCompatActivity {
     protected void toast(){
         Toast.makeText(Product.this,"数据提交失败",Toast.LENGTH_SHORT).show();
     }
+    protected void getLocate(){
+        String sessionId="92D84AAD121190462E763B7D773F144C";
+        String urlPath="http://10.0.2.2:8080/mes/mobile/mBillInLoc?sessionid="+sessionId;
+        String postData = "";
+
+        org.json.JSONObject object = new org.json.JSONObject();
+        try {
+            object.put("status", "0");
+            object.put("count", "0");
+            object.put("bill_id","1");
+//                object.put("bill_id", "1");
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        postData = object.toString();
+
+        HttpPost.sendHttpRequest(urlPath, postData, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) {
+                Log.d(TAG, "onFinish: "+response);
+                if(response=="数据提交失败")
+                {
+                    Message message = new Message();
+                    message.what = WRONG;
+                    handler.sendMessage(message);
+                }else {
+                    // 获取响应的正文
+                    JSONObject jsonObject1 = JSONObject.fromObject(response);
+                    int status = jsonObject1.getInt("status");
+                    if (status == 0) {
+                        JSONArray jsonLocArray = jsonObject1.getJSONArray("result");
+                        for (int i = 0; i < jsonLocArray.size(); i++) {
+
+                                JSONObject locObject = jsonLocArray.getJSONObject(i);
+                                int loc_id = locObject.getInt("loc_id");
+                                String loc_name = locObject.getString("loc_name");
+                                int max_num = locObject.getInt("max_num");
+                                int remain_num = locObject.getInt("remain_num");
+                                int al_num = max_num - remain_num;
+                                LocationInfo locationInfo = new LocationInfo(loc_id, loc_name, max_num, al_num, remain_num);
+                                locationInfoList.add(locationInfo);
+                                if (i == 0) {
+                                    Location=loc_name;
+                                    Message message = new Message();
+                                    message.what = UPDATE_TEXT;
+                                    handler.sendMessage(message);
+                                }
+                            }
+                        }
+
+
+                }
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.d(TAG, "onFinish:Error"+e);
+            }
+        });
+
+    }
+
+    //关闭键盘
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (isShouldHideInput(v, ev)) {
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+            return super.dispatchTouchEvent(ev);
+        }
+        // 必不可少，否则所有的组件都不会有TouchEvent了
+        if (getWindow().superDispatchTouchEvent(ev)) {
+            return true;
+        }
+        return onTouchEvent(ev);
+    }
+
+    public  boolean isShouldHideInput(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
+            int[] leftTop = { 0, 0 };
+            //获取输入框当前的location位置
+            v.getLocationInWindow(leftTop);
+            int left = leftTop[0];
+            int top = leftTop[1];
+            int bottom = top + v.getHeight();
+            int right = left + v.getWidth();
+            if (event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom) {
+                // 点击的是输入框区域，保留点击EditText的事件
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //回调获取扫描得到的条码值
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
@@ -300,6 +427,11 @@ public class Product extends AppCompatActivity {
                     getPost();
                 }
                 break;
+            case 2:
+                if (resultCode==RESULT_OK){
+                    String backData = data.getStringExtra("location");
+                    location.setText(backData);
+                }
             default:
         }
     }
