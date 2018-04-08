@@ -16,4 +16,7 @@ public interface WareApi {
     String URL_LOGIN = URL_HOST + "mLogin";
     String URL_PARAMOBTAIN = URL_HOST +"mPara";
 
+    String URL_mBillInLoc = "http://10.0.2.2:8080/mes/mobile/mBillInLoc?sessionid=92D84AAD121190462E763B7D773F144C";
+    String URL_LOG = "http://10.0.2.2:8080/mes/mobile/mLogin?userid=admin&password=f";
+
 }
