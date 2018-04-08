@@ -23,11 +23,6 @@
         </activity>
         <activity android:name=".productIn.LocationSelectActivity" />
         <activity android:name=".productIn.LocationSelectAutoOrManualActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".productIn.Help01Activity" />
@@ -44,9 +39,6 @@
         </activity>
         <activity
             android:name=".productIn.produce_table.Product_table"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".productIn.produce_table.Product_sub"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".productIn.SpecificWareSelectActivity" />
         <activity android:name=".productIn.feedback.ScanSuccessFeedbackActivity"></activity>

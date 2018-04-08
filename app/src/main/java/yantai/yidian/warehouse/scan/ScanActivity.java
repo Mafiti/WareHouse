@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -23,10 +22,6 @@ import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
 import yantai.yidian.warehouse.R;
-import yantai.yidian.warehouse.productIn.CheckActivity;
-import yantai.yidian.warehouse.productIn.WareChooseActivity;
-import yantai.yidian.warehouse.productIn.produce_table.Product_sub;
-import yantai.yidian.warehouse.productIn.produce_table.Product_table;
 
 public class ScanActivity extends AppCompatActivity implements QRCodeView.Delegate {
     private static final String TAG = ScanActivity.class.getSimpleName();

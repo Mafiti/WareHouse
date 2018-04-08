@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.mondschein.btnview.ButtonView;
 
 import yantai.yidian.warehouse.R;
-import yantai.yidian.warehouse.productIn.produce_table.Product_sub;
 
 public class CheckActivity extends AppCompatActivity {
 
@@ -103,8 +102,8 @@ public class CheckActivity extends AppCompatActivity {
         buttonbottom1.setButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CheckActivity.this, Product_sub.class);
-                startActivity(intent);
+               // Intent intent = new Intent(CheckActivity.this, Product_sub.class);
+               // startActivity(intent);
             }
         });
 
