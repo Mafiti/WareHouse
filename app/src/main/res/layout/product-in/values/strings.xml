@@ -29,4 +29,10 @@
     <string name="batch">生产批次</string>
     <string name="type">产品类别</string>
     <string name="sure">确定提交</string>
+
+    <string name="user_num">用户名</string>
+    <string name="user_password">密码</string>
+    <string name="forget_password">忘记密码</string>
+
+
 </resources>

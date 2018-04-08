@@ -31,17 +31,21 @@
         <activity
             android:name=".productIn.produce_table.Product"
             android:windowSoftInputMode="adjustPan|stateHidden" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".productIn.produce_table.Product_table"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".productIn.SpecificWareSelectActivity" />
         <activity android:name=".productIn.feedback.ScanSuccessFeedbackActivity"></activity>
+        <activity android:name=".log.LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
