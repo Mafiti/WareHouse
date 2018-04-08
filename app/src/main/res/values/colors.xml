@@ -13,4 +13,11 @@
 
     <color name="table_gray">#f0f1f3</color>
     <color name="produce_background">#f9fbfd</color>
+
+
+    <color name="navigationBarColor">#000000</color>
+
+    <color name="bg_toolbar">#ffffff</color>
+    <color name="gray">#a0a0a0</color>
+    <color name="blue">#157CEC</color>
 </resources>

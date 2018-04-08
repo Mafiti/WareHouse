@@ -15,11 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".productIn.ProductInActivity" />
         <activity android:name=".productIn.WareChooseActivity" >
@@ -32,7 +28,13 @@
         <activity android:name=".productIn.CheckActivity"/>
         <activity
             android:name=".productIn.produce_table.Product"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".productIn.produce_table.Product_table"
             android:windowSoftInputMode="adjustPan|stateHidden" />

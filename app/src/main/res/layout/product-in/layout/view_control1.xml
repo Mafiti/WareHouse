@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/MatchWrap.Vertical"
-    android:layout_alignParentBottom="true">
+              style="@style/MatchWrap.Vertical"
+              android:layout_alignParentBottom="true">
 
     <LinearLayout style="@style/MatchWrap.Horizontal">
 
         <TextView
-            android:id="@+id/table_detail"
+            android:id="@+id/sure_sub"
             style="@style/AutoWrapTv2"
-            android:text="单据详情"
+            android:text="确认提交"
             />
 
 
@@ -17,9 +17,9 @@
     <LinearLayout style="@style/MatchWrap.Horizontal">
 
         <TextView
-            android:id="@+id/scan_next"
+            android:id="@+id/scan_delete"
             style="@style/AutoWrapTv3"
-            android:text="继续扫码"/>
+            android:text="扫码删除"/>
 
     </LinearLayout>
 

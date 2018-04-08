@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         app:title_text="生产入库单记录"
         app:title_color="@color/black"
-    >
+        >
     </com.mondschein.titleview.TitleView>
     <RelativeLayout
         android:id="@+id/in_house"
         android:layout_below="@+id/title_table"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="30dp"
         android:background="@color/white">
         <ImageView
             android:layout_marginStart="18dp"
@@ -26,17 +26,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/in_house"/>
-        <EditText
+        <TextView
+            android:id="@+id/wave"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
             android:gravity="center_vertical"
-            android:textSize="19sp"
+            android:textSize="16sp"
             android:textColor="#707274"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:hint="@string/table"
+            android:text="@string/table"
             android:maxLines="2"
             android:background="@null"
             />
@@ -51,7 +52,7 @@
         android:id="@+id/product_num"
         android:layout_below="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="30dp"
         android:background="@color/white">
         <ImageView
             android:layout_marginStart="18dp"
@@ -59,17 +60,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/product_num"/>
-        <EditText
+        <TextView
+            android:id="@+id/product_noid"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
             android:gravity="center_vertical"
-            android:textSize="19sp"
+            android:textSize="16sp"
             android:textColor="#707274"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:hint="@string/table"
+            android:text="@string/table"
             android:maxLines="2"
             android:background="@null"
             />
@@ -84,7 +86,7 @@
         android:id="@+id/product_pici"
         android:layout_below="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="30dp"
         android:background="@color/white">
         <ImageView
             android:layout_marginStart="18dp"
@@ -92,16 +94,17 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/production_batch"/>
-        <EditText
+        <TextView
+            android:id="@+id/batch"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:gravity="center_vertical"
-            android:textSize="19sp"
+            android:textSize="16sp"
             android:textColor="#707274"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:hint="@string/table"
+            android:text="@string/table"
             android:maxLines="2"
             android:background="@null"
             />
@@ -111,7 +114,7 @@
         android:id="@+id/view3"
         android:layout_below="@+id/product_pici"
         android:layout_width="match_parent"
-        android:layout_height="68px"
+        android:layout_height="30dp"
         android:background="@color/table_gray"
         android:orientation="horizontal">
         <TextView
@@ -175,7 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="52dp"
             android:layout_marginLeft="52dp"
-            android:text="@string/produce_line"
+            android:text="@string/dev_id"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
@@ -199,7 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/product_time"
+            android:text="@string/batch"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
@@ -212,42 +215,41 @@
             android:textColor="@color/black"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-       android:id="@+id/list"
-        android:layout_above="@+id/btn_scan_delete"
+        android:id="@+id/list"
         android:layout_below="@+id/list_title"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_weight="1"
-        android:layout_marginLeft="10.5dp"
-        android:layout_marginRight="10.5dp"
+
         android:background="@color/produce_background">
 
     </android.support.v7.widget.RecyclerView>
-<!--    <Button
-        android:id="@+id/btn_scan_delete"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="38dp"
-        android:layout_marginLeft="38.5dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/scan_delete"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:background="@drawable/btn2_non"
-        />-->
-    <com.example.mondschein.btnview.ButtonView
-        android:id="@+id/btn_scan_delete"
+    <!--    <Button
+            android:id="@+id/btn_scan_delete"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="38dp"
+            android:layout_marginLeft="38.5dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/scan_delete"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/btn2_non"
+            />-->
+    <!--  <com.example.mondschein.btnview.ButtonView
+          android:id="@+id/btn_scan_delete"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:btn_src = "@mipmap/ch"
-        app:btn_text = "@string/scan_delete"
-        app:btn_text_size = "18"
-        app:btn_text_color = "#ffffff"
-        >
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          app:btn_src = "@mipmap/ch"
+          app:btn_text = "@string/scan_delete"
+          app:btn_text_size = "18"
+          app:btn_text_color = "#ffffff"
+          >
 
-    </com.example.mondschein.btnview.ButtonView>
+      </com.example.mondschein.btnview.ButtonView>-->
+    <include layout="@layout/view_control1"/>
 
 </RelativeLayout>

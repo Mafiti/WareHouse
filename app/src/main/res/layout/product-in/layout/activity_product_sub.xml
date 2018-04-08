@@ -175,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="52dp"
             android:layout_marginLeft="52dp"
-            android:text="@string/produce_line"
+            android:text="@null"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
@@ -199,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/product_time"
+            android:text="@null"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
