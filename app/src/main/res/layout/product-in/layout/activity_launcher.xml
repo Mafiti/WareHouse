@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launcher_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/launcher_background"
+    tools:context=".log.LauncherActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_num"
+        android:textColor="#707070"
+        android:textSize="17sp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="70dp"
+        />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="245dp"
+        android:textSize="17sp"
+        android:layout_marginLeft="130dp"
+        android:textAlignment="center"
+        android:maxLines="1"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_password"
+        android:textSize="17sp"
+        android:textColor="#707070"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="310dp"
+        />
+    <EditText
+        android:id="@+id/edit_pwd"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="305dp"
+        android:textSize="17sp"
+        android:layout_marginLeft="130dp"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forget_password"
+        android:textSize="13sp"
+        android:textColor="#3e96f2"
+        android:layout_marginTop="355dp"
+        android:layout_marginLeft="255dp"
+        />
+    <Button
+        android:id="@+id/btn_log"
+        android:layout_width="match_parent"
+        android:layout_height="49.5dp"
+        android:background="@drawable/launcher_btn"
+        android:layout_marginTop="420dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"
+        />
+
+</RelativeLayout>
