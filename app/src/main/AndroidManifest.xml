@@ -42,6 +42,8 @@
         <activity android:name=".log.LauncherActivity">
 
 
+            
+
         </activity>
     </application>
 
