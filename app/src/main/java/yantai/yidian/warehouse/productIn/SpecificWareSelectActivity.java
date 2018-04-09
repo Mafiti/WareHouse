@@ -55,9 +55,6 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
     final static int RESPONSERESULT_ERROR = -1;
     final static int RESPONSERESULT_SUCCESS = 1;
 
-    public static int getSelectPosition() {
-        return selectPosition;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +73,7 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectPosition = position;
-                specificWareAdapter.notifyDataSetChanged();
+                specificWareAdapter.select(position);
                 specificWareBean = list.get(position);
                 wareName = specificWareBean.getWare_name();
                 Log.d("specificWareBean:",wareName);

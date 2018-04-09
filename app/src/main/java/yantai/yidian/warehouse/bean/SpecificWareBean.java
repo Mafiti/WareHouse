@@ -8,6 +8,7 @@ public class SpecificWareBean {
 
     public String ware_id;//仓库编号
     public String ware_name;//仓库名称
+    private boolean isSelected = false;
 
 
     public SpecificWareBean() {
@@ -32,5 +33,13 @@ public class SpecificWareBean {
 
     public void setWare_name(String ware_name) {
         this.ware_name = ware_name;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.isSelected = selected;
     }
 }

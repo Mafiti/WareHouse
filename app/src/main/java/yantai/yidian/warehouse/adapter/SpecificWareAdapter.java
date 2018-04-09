@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -23,12 +24,30 @@ public class SpecificWareAdapter extends BaseAdapter {
     private List<SpecificWareBean> list;
     private Context context;
     private LayoutInflater inflater;
+    SpecificWareBean specificWareBean;
+    private int index = -1;
     HashMap<String,Boolean> states=new HashMap<String,Boolean>();//用于记录每个RadioButton的状态，并保证只可选一个
 
     public SpecificWareAdapter(List<SpecificWareBean> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
+    }
+
+    public void setList(List<SpecificWareBean> specificWareBeans) {
+        this.list = specificWareBeans;
+    }
+
+    public void select(int position) {
+        if (!list.get(position).isSelected()) {
+            list.get(position).setSelected(true);
+            for (int i = 0; i < list.size(); i++) {
+                if (i != position) {
+                    list.get(i).setSelected(false);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -49,7 +68,7 @@ public class SpecificWareAdapter extends BaseAdapter {
     //获取每个item显示的内容
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
 
         if (convertView == null){
             convertView = inflater.inflate(R.layout.listitem_specific_ware_select,null);
@@ -61,13 +80,16 @@ public class SpecificWareAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        specificWareBean = (SpecificWareBean) getItem(position);
+        viewHolder.rbtn.setChecked(specificWareBean.isSelected());
 
-        final RadioButton rbtn = (RadioButton) convertView.findViewById(R.id.item_rb_ware_check);
-        viewHolder.rbtn = rbtn;
+        //final RadioButton rbtn = (RadioButton) convertView.findViewById(R.id.item_rb_ware_check);
+        //viewHolder.rbtn = rbtn;
 
         viewHolder.tv_ware_id.setText(list.get(position).getWare_id());
         viewHolder.tv_ware_name.setText(list.get(position).getWare_name());
 
+        /*
         viewHolder.rbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +112,7 @@ public class SpecificWareAdapter extends BaseAdapter {
             res = true;
 
         viewHolder.rbtn.setChecked(res);
+        */
         /*
         SpecificWareBean specificWareBean = list.get(position);
         TextView tv_ware_name = (TextView) view.findViewById(R.id.item_ware_name);
