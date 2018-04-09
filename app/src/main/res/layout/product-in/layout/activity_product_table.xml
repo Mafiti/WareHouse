@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title_text="生产入库单记录"
-        app:title_color="@color/black"
+        app:title_color = "#000000"
         >
     </com.mondschein.titleview.TitleView>
     <RelativeLayout
@@ -28,11 +28,11 @@
             android:src="@drawable/in_house"/>
         <TextView
             android:id="@+id/wave"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textSize="16sp"
             android:textColor="#707274"
             android:layout_alignParentRight="true"
@@ -62,11 +62,11 @@
             android:src="@drawable/product_num"/>
         <TextView
             android:id="@+id/product_noid"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textSize="16sp"
             android:textColor="#707274"
             android:layout_alignParentRight="true"
@@ -96,10 +96,10 @@
             android:src="@drawable/production_batch"/>
         <TextView
             android:id="@+id/batch"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textSize="16sp"
             android:textColor="#707274"
             android:layout_alignParentEnd="true"
@@ -166,50 +166,42 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_weight="2.5"
+            android:gravity="center"
             android:text="@string/box_num"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginLeft="52dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/dev_id"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/class_time"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginLeft="7dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/item_number"
             android:textSize="15sp"
             android:textColor="@color/black"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="@string/batch"
-            android:textSize="15sp"
-            android:textColor="@color/black"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:gravity="center"
             android:text="@string/location"
             android:textSize="15sp"
             android:textColor="@color/black"/>

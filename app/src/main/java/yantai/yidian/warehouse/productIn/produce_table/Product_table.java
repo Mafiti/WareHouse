@@ -1,6 +1,7 @@
 package yantai.yidian.warehouse.productIn.produce_table;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +23,7 @@ import java.util.List;
 import yantai.yidian.warehouse.R;
 import yantai.yidian.warehouse.adapter.ProductAdapter;
 import yantai.yidian.warehouse.bean.ProductBean;
+import yantai.yidian.warehouse.productIn.CheckActivity;
 import yantai.yidian.warehouse.scan.ScanActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
@@ -73,6 +75,8 @@ public class Product_table extends AppCompatActivity {
         wave=(TextView)findViewById(R.id.wave);
         product_noid=(TextView)findViewById(R.id.product_noid);
         batch=(TextView)findViewById(R.id.batch);
+        SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+        wave.setText(spf.getString("wareName",null));
         product_noid.setText(Product.Product_noid);
         batch.setText(Product.Batch);
         GridLayoutManager layoutManager=new GridLayoutManager(this,1);
@@ -93,14 +97,17 @@ public class Product_table extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getPost();
+                Intent intent = new Intent(Product_table.this, CheckActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
     protected void getPost()
     {
-
-        String sessionId="92D84AAD121190462E763B7D773F144C";
-        String urlPath="http://10.0.2.2:8081/mes/mobile/mBillSubmit?sessionid="+sessionId;
+        SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+        String sessionId=spf.getString("sessionid",null);
+        String urlPath="http://10.0.2.2:8080/mes/mobile/mBillSubmit?sessionid="+sessionId;
         JSONObject jsonPost=new JSONObject();
         List<Object> tempList = new ArrayList<Object>();
         JSONObject jsonObj = new JSONObject();

@@ -1,14 +1,17 @@
 package yantai.yidian.warehouse.productIn;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.mondschein.btnview.ButtonView;
 
 import yantai.yidian.warehouse.R;
+import yantai.yidian.warehouse.productIn.produce_table.Product;
 
 public class WareChooseActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -17,7 +20,7 @@ public class WareChooseActivity extends AppCompatActivity implements View.OnClic
     private RadioButton rbtnASWare;
     private RadioButton rbtnEllipsis;
     private ButtonView btn_production_next;
-    private int wareType = 0;
+    private String productType = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,17 @@ public class WareChooseActivity extends AppCompatActivity implements View.OnClic
         btn_production_next.setButtonListener(new View.OnClickListener() {
                                          @Override
                                          public void onClick(View view) {
-                                             startActivity(new Intent(WareChooseActivity.this,LocationSelectAutoOrManualActivity.class));
+                                             if (productType ==""){
+                                                 Toast.makeText(WareChooseActivity.this,"请先选择产品类型",Toast.LENGTH_SHORT).show();
+                                             }else {
+                                                 SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+                                                 SharedPreferences.Editor editor = spf.edit();
+                                                 editor.putString("productType",productType);
+                                                 editor.commit();
+                                                 startActivity(new Intent(WareChooseActivity.this,Product.class));
+                                                 finish();
+                                             }
+
                                          }
                                      }
         );
@@ -51,6 +64,7 @@ public class WareChooseActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_a_ware:
+                productType = rbtnAWare.getText().toString();
                 rbtnAWare.setChecked(true);
                 rbtnBWare.setChecked(false);
                 rbtnASWare.setChecked(false);
@@ -61,6 +75,7 @@ public class WareChooseActivity extends AppCompatActivity implements View.OnClic
                 rbtnASWare.setTextColor(this.getResources().getColor(R.color.white));
                 break;
             case R.id.btn_b_ware:
+                productType = rbtnBWare.getText().toString();
                 rbtnAWare.setChecked(false);
                 rbtnBWare.setChecked(true);
                 rbtnASWare.setChecked(false);
@@ -71,6 +86,7 @@ public class WareChooseActivity extends AppCompatActivity implements View.OnClic
                 rbtnASWare.setTextColor(this.getResources().getColor(R.color.white));
                 break;
             case R.id.btn_as_ware:
+                productType = rbtnASWare.getText().toString();
                 rbtnAWare.setChecked(false);
                 rbtnBWare.setChecked(false);
                 rbtnASWare.setChecked(true);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yantai.yidian.warehouse.productIn.feedback.ScanSuccessFeedbackActivity">
+    tools:context="yantai.yidian.warehouse.productIn.feedback.ScanFeedbackActivity">
 
     <com.mondschein.titleview.TitleView
         android:id="@+id/title_pur"
@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:visibility="visible"
+        app:title_color="#000000"
         app:title_text="生产入库-扫码">
 
     </com.mondschein.titleview.TitleView>
@@ -23,7 +24,7 @@
         android:background="#E4ECF3"
         android:layout_height="34dp">
         <TextView
-            android:id="@+id/tv_"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -38,6 +39,7 @@
 
         >
         <RelativeLayout
+            android:id="@+id/rlyt_img"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,6 +55,22 @@
                 android:textColor="#000000"
                 android:textSize="29sp"
                 />
+            <TextView
+                android:id="@+id/tv_msg_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_msg"
+                android:textSize="15sp"
+                android:textColor="#242323"
+                android:gravity="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_msg_detail"
+                android:gravity="center"
+                android:text="请重新选择！"
+                android:textSize="15sp"
+                android:textColor="#242323"/>
 
 
         </RelativeLayout>

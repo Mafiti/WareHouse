@@ -1,11 +1,13 @@
 package yantai.yidian.warehouse.productIn;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.mondschein.btnview.ButtonView;
 
@@ -13,7 +15,7 @@ import yantai.yidian.warehouse.R;
 
 public class ProductInActivity extends AppCompatActivity implements View.OnClickListener{
     //记录仓库
-    private int wareNum = 0;
+    private String wareName = "";
     private RadioButton btnComplete;
     private RadioButton btnGp12;
     private RadioButton btnButter;
@@ -44,7 +46,16 @@ public class ProductInActivity extends AppCompatActivity implements View.OnClick
         buttonView.setButtonListener(new View.OnClickListener() {
                                          @Override
                                          public void onClick(View view) {
-                                             startActivity(new Intent(ProductInActivity.this,SpecificWareSelectActivity.class));
+                                        if (wareName == ""){
+                                            Toast.makeText(ProductInActivity.this,"请先选择仓库类型",Toast.LENGTH_SHORT).show();
+                                        }else {
+                                            SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = spf.edit();
+                                            editor.putString("wareTypeName",wareName);
+                                            editor.commit();
+                                            startActivity(new Intent(ProductInActivity.this,SpecificWareSelectActivity.class));
+                                            finish();
+                                        }
                                          }
                                      }
         );
@@ -58,7 +69,7 @@ public class ProductInActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()){
             case R.id.btn_complete_ware:
                 if(((RadioButton)view).isChecked()){
-                    wareNum = 1;
+                    wareName = "成品库";
                     btnComplete.setChecked(true);
                     btnButter.setChecked(false);
                     btnGp12.setChecked(false);
@@ -67,7 +78,7 @@ public class ProductInActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_gp_ware:
                 if(((RadioButton)view).isChecked()){
-                    wareNum = 2;
+                    wareName = "GP12库";
                     btnGp12.setChecked(true);
                     btnComplete.setChecked(false);
                     btnButter.setChecked(false);
@@ -76,7 +87,7 @@ public class ProductInActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_buffer_ware:
                 if(((RadioButton)view).isChecked()){
-                    wareNum = 3;
+                    wareName = "缓冲库";
                     btnButter.setChecked(true);
                     btnComplete.setChecked(false);
                     btnGp12.setChecked(false);
@@ -85,19 +96,17 @@ public class ProductInActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_waste_ware:
                 if(((RadioButton)view).isChecked()){
-                    wareNum = 4;
+                    wareName = "废品库";
                     btnWaste.setChecked(true);
                     btnComplete.setChecked(false);
                     btnGp12.setChecked(false);
                     btnButter.setChecked(false);
                 }
                 break;
-            case R.id.btn_next:
-
-                break;
             default:
                 break;
 
         }
+
     }
 }

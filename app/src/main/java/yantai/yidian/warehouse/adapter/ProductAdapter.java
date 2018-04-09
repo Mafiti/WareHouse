@@ -28,7 +28,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         TextView dev_id_table;
         TextView class_time;
         TextView item_number;
-        TextView batch_table;
+        //TextView batch_table;
         TextView location;
         public ViewHolder(View view)
         {
@@ -37,7 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             dev_id_table=(TextView)view.findViewById(R.id.dev_id_table);
             class_time=(TextView)view.findViewById(R.id.class_time);
             item_number=(TextView)view.findViewById(R.id.item_number);
-            batch_table=(TextView)view.findViewById(R.id.batch_table);
+           // batch_table=(TextView)view.findViewById(R.id.batch_table);
             location=(TextView)view.findViewById(R.id.location);
         }
     }
@@ -59,7 +59,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         ProductBean productBean=mproductList.get(position);
         holder.box_num.setText(productBean.getBox_num());
         holder.dev_id_table.setText(productBean.getDev_id()+"#线");
-        holder.batch_table.setText(productBean.getBatch());
+        //holder.batch_table.setText(productBean.getBatch());
         holder.item_number.setText(productBean.getItem_number()+"");
         holder.class_time.setText(productBean.getClasss_time());
         holder.location.setText(productBean.getLocation());

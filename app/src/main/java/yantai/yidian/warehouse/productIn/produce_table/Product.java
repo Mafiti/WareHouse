@@ -3,6 +3,7 @@ package yantai.yidian.warehouse.productIn.produce_table;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ import yantai.yidian.warehouse.R;
 import yantai.yidian.warehouse.bean.ProductBean;
 import yantai.yidian.warehouse.productIn.LocationInfo;
 import yantai.yidian.warehouse.productIn.LocationSelectActivity;
+import yantai.yidian.warehouse.productIn.feedback.ScanFeedbackActivity;
 import yantai.yidian.warehouse.scan.ScanActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
@@ -99,6 +101,16 @@ public class Product extends AppCompatActivity {
             }
         }
     }
+
+    public void clearText(){
+        box_number.setText("");
+        product_noid.setText("");
+        batch.setText("");
+        location.setText("");
+        class_time.setText("");
+        item_number.setText("");
+
+    }
     protected void inintView()
     {
         box_number=(EditText)findViewById(R.id.box_number1);
@@ -108,6 +120,7 @@ public class Product extends AppCompatActivity {
         select_location=(Button)findViewById(R.id.select_location);
         class_time=(EditText)findViewById(R.id.class_time);
         item_number=(EditText)findViewById(R.id.item_number);
+        clearText();
         scan_next=(TextView) findViewById(R.id.scan_next);
         table_detail=(TextView)findViewById(R.id.table_detail);
         scan=(ImageView)findViewById(R.id.scan);
@@ -164,36 +177,76 @@ public class Product extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // getPost();
-                if(box_number.getText().toString()=="" || product_noid.getText().toString()=="" || batch.getText().toString()=="" || class_time.getText().toString()=="" ||item_number.getText().toString()=="" ||location.getText().toString()=="") {
+                if(box_number.getText().toString().equals("") || product_noid.getText().toString().equals("") || batch.getText().toString().equals("") || class_time.getText().toString().equals("") ||item_number.getText().toString().equals("") ||location.getText().toString().equals("")) {
                     Toast.makeText(Product.this, "有一项为空", Toast.LENGTH_SHORT).show();
+                }else {
+                    ProductBean productBean=new ProductBean();
+                    //还要判断信息是否为空
+                    productBean.setBox_id(Box_id);
+                    productBean.setDev_id(Dev_id);
+                    productBean.setBox_num(box_number.getText().toString());
+                    int a=0;
+                    if (!product_noid.getText().toString().equals("")){
+                       a =Integer.parseInt(product_noid.getText().toString());
+                    }
+                    productBean.setProduct_noid(a);
+                    productBean.setClasss_time(class_time.getText().toString());       //可以添加逻辑，根据获取的系统时间判断白班还是夜班
+                    int num=0;
+                    if (!item_number.getText().toString().equals("")){
+                        num=Integer.parseInt(item_number.getText().toString());
+                    }
+                    productBean.setItem_number(num);     //个数这里我不太理解
+                    productBean.setBatch(batch.getText().toString());
+                    productBean.setLocation(location.getText().toString());
+                    productBeanList.add(productBean);
+                    Toast.makeText(Product.this,"提交成功",Toast.LENGTH_SHORT).show();
+                    box_number.setText("");
+                    product_noid.setText("");
+                    batch.setText("");
+                    class_time.setText("");
+                    item_number.setText("");
+                    location.setText("");
                 }
-                ProductBean productBean=new ProductBean();
-                //还要判断信息是否为空
-                productBean.setBox_id(Box_id);
-                productBean.setDev_id(Dev_id);
-                productBean.setBox_num(box_number.getText().toString());
-                int a=Integer.parseInt(product_noid.getText().toString());
-                productBean.setProduct_noid(a);
-                productBean.setClasss_time(class_time.getText().toString());       //可以添加逻辑，根据获取的系统时间判断白班还是夜班
-                int num=Integer.parseInt(item_number.getText().toString());
-                productBean.setItem_number(num);     //个数这里我不太理解
-                productBean.setBatch(batch.getText().toString());
-                productBean.setLocation(location.getText().toString());
-                productBeanList.add(productBean);
-                Toast.makeText(Product.this,"提交成功",Toast.LENGTH_SHORT).show();
-                box_number.setText("");
-                product_noid.setText("");
-                batch.setText("");
-                class_time.setText("");
-                item_number.setText("");
-                location.setText("");
+
             }
         });
         table_detail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent=new Intent(Product.this,Product_table.class);
-                startActivity(intent);
+                if(!box_number.getText().toString().equals("") && !product_noid.getText().toString().equals("") && !batch.getText().toString().equals("") && !class_time.getText().toString().equals("") && !item_number.getText().toString().equals("") && !location.getText().toString().equals("")) {
+                    ProductBean productBean=new ProductBean();
+                    //还要判断信息是否为空
+                    productBean.setBox_id(Box_id);
+                    productBean.setDev_id(Dev_id);
+                    productBean.setBox_num(box_number.getText().toString());
+                    int a=0;
+                    if (!product_noid.getText().toString().equals("")){
+                        a =Integer.parseInt(product_noid.getText().toString());
+                    }
+                    productBean.setProduct_noid(a);
+                    productBean.setClasss_time(class_time.getText().toString());       //可以添加逻辑，根据获取的系统时间判断白班还是夜班
+                    int num=0;
+                    if (!item_number.getText().toString().equals("")){
+                        num=Integer.parseInt(item_number.getText().toString());
+                    }
+                    productBean.setItem_number(num);     //个数这里我不太理解
+                    productBean.setBatch(batch.getText().toString());
+                    productBean.setLocation(location.getText().toString());
+                    productBeanList.add(productBean);
+                    Toast.makeText(Product.this,"提交成功",Toast.LENGTH_SHORT).show();
+                    box_number.setText("");
+                    product_noid.setText("");
+                    batch.setText("");
+                    class_time.setText("");
+                    item_number.setText("");
+                    location.setText("");
+                    Intent intent=new Intent(Product.this,Product_table.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent=new Intent(Product.this,Product_table.class);
+                    startActivity(intent);
+                }
+
             }
         });
         select_location.setOnClickListener(new View.OnClickListener() {
@@ -211,15 +264,10 @@ public class Product extends AppCompatActivity {
     protected void getPost()
     {
         Toast.makeText(Product.this,"点击",Toast.LENGTH_SHORT).show();
-          /*      String sessionId="92D84AAD121190462E763B7D773F144C";
-                String urlPath="http://10.0.2.2:8081/mes/mobile/mScanBox?sessionid="+sessionId;*/
-        String sessionId="92D84AAD121190462E763B7D773F144C";
+        SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+        String sessionId=spf.getString("sessionid",null);
         String urlPath="http://10.0.2.2:8080/mes/mobile/mScanBox?sessionid="+sessionId;
-        //String urlPath="http://10.0.2.2:8081/mes1/index.jsp?tranid=13";
-        // String urlPath="http://10.0.2.2:8081/mes/index.jsp?tranid=14";
-        //final String content="{\"status\":0,\"count\":1,\"result\":[{\"bill_id\":1,\"box_no\":\"TMX0100124\"}]}";
-        //String content="";
-        //String content="{\"status\":0,\"count\":1,\"result\":[{\"bill_id\":1,\"box_no\":\"TMX0100124\"}]}";
+
         JSONObject jsonPost=new JSONObject();
         List<Object> tempList = new ArrayList<Object>();
         JSONObject jsonObj = new JSONObject();
@@ -245,7 +293,7 @@ public class Product extends AppCompatActivity {
                 tempList.add(jsonObj.toString());*/
 
         //组装
-        jsonPost.put("状态", 0);
+        jsonPost.put("status", 0);
         jsonPost.put("count", 1);
         //jsonPost.put("bill_id", 1);
         jsonPost.put("result", tempList);
@@ -269,22 +317,30 @@ public class Product extends AppCompatActivity {
                 }else {
                     JSONObject jsonObject1 = JSONObject.fromObject(response);
                     JSONArray jsonArray = jsonObject1.getJSONArray("result");//里面有一个数组数据，可以用getJSONArray获取数组
-                    Log.d(TAG, "onFinish: loading1");
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        JSONObject item = jsonArray.getJSONObject(i); //每条记录又由几个Object对象组成
-                        Box_id=item.getInt("bill_id");
-                        Dev_id=item.getInt("dev_id");            //产线
-                        Product_noid = item.getString("product_noid");    //产品品号
-                        Classs_time = item.getString("class_type_name");     //班次
-                        Item_number = item.getString("fact_num");     //个数
-                        Batch = item.getString("batch");    //生产批次
-                        //Location = item.getString("loc_id");    //库位
-                        Log.d(TAG, "onFinish: loading");
-                        Message message = new Message();
-                        message.what = UPDATE_TEXT;
-                        handler.sendMessage(message);
+                    int status = jsonObject1.getInt("status");
+                    Log.d(TAG,status+"");
+                    if (status!=0){
+                        Intent intent = new Intent(Product.this, ScanFeedbackActivity.class);
+                        intent.putExtra("status",status);
+                        startActivity(intent);
+                    }else {
+                        for (int i = 0; i < jsonArray.size(); i++) {
+                            JSONObject item = jsonArray.getJSONObject(i); //每条记录又由几个Object对象组成
+                            Box_id=item.getInt("bill_id");
+                            Dev_id=item.getInt("dev_id");            //产线
+                            Product_noid = item.getString("product_noid");    //产品品号
+                            Classs_time = item.getString("class_type_name");     //班次
+                            Item_number = item.getString("fact_num");     //个数
+                            Batch = item.getString("batch");    //生产批次
+                            //Location = item.getString("loc_id");    //库位
+                            Log.d(TAG, "onFinish: loading");
+                            Message message = new Message();
+                            message.what = UPDATE_TEXT;
+                            handler.sendMessage(message);
 
+                        }
                     }
+
                 }
 
             }
@@ -310,7 +366,8 @@ public class Product extends AppCompatActivity {
         Toast.makeText(Product.this,"数据提交失败",Toast.LENGTH_SHORT).show();
     }
     protected void getLocate(){
-        String sessionId="92D84AAD121190462E763B7D773F144C";
+        SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+        String sessionId=spf.getString("sessionid",null);
         String urlPath="http://10.0.2.2:8080/mes/mobile/mBillInLoc?sessionid="+sessionId;
         String postData = "";
 

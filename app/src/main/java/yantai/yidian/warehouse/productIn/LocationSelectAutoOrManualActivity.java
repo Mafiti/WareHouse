@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import yantai.yidian.warehouse.R;
-import yantai.yidian.warehouse.productIn.feedback.ScanSuccessFeedbackActivity;
+import yantai.yidian.warehouse.productIn.feedback.ScanFeedbackActivity;
 import yantai.yidian.warehouse.util.WareApi;
 
 public class LocationSelectAutoOrManualActivity extends AppCompatActivity implements WareApi{
@@ -61,7 +60,7 @@ public class LocationSelectAutoOrManualActivity extends AppCompatActivity implem
         btn_sure.setButtonListener(new View.OnClickListener() {
                                                   @Override
                                                   public void onClick(View view) {
-                                                      startActivity(new Intent(LocationSelectAutoOrManualActivity.this,ScanSuccessFeedbackActivity.class));
+                                                      startActivity(new Intent(LocationSelectAutoOrManualActivity.this,ScanFeedbackActivity.class));
                                                   }
                                               }
         );

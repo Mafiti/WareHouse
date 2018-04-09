@@ -62,13 +62,16 @@ public class LauncherActivity extends AppCompatActivity implements WareApi {
                 String parem = builder.build();
                 String url = URL_LOGIN + parem.toString();
                  Log.d(TAG, "onClick: "+url);
-                HttpPost.sendHttpRequest(url, "", new HttpCallbackListener() {
-                    @Override
-                    public void onFinish(String response) {
-                        Message msg = Message.obtain();
-                        msg.what = 0;
-                        msg.obj = response;
-                        handler.sendMessage(msg);
+                if(edit_name.getText().toString().equals("")){
+                    Toast.makeText(LauncherActivity.this,"用户名不能为空",Toast.LENGTH_SHORT).show();
+                }else {
+                    HttpPost.sendHttpRequest(url, "", new HttpCallbackListener() {
+                        @Override
+                        public void onFinish(String response) {
+                            Message msg = Message.obtain();
+                            msg.what = 0;
+                            msg.obj = response;
+                            handler.sendMessage(msg);
 
 
 //                        //标记不是首次运行
@@ -78,14 +81,15 @@ public class LauncherActivity extends AppCompatActivity implements WareApi {
 //                        editor.commit();
 //                        //销毁当前Activity
 //                        finish();
-                        //  Log.d(TAG, "onFinish: "+ response.toString());
-                    }
+                            //  Log.d(TAG, "onFinish: "+ response.toString());
+                        }
 
-                    @Override
-                    public void onError(Exception e) {
-                        Log.d(TAG, "onError: " + e.toString());
-                    }
-                });
+                        @Override
+                        public void onError(Exception e) {
+                            Log.d(TAG, "onError: " + e.toString());
+                        }
+                    });
+                }
             }
         });
 
@@ -121,12 +125,20 @@ public class LauncherActivity extends AppCompatActivity implements WareApi {
                 jsonLoc = new JSONObject(responseLoc);
                 int status = jsonLoc.getInt("status");
                 String result = jsonLoc.getString("result");
-                // Log.d(TAG, "handleMessage: "+result);
-                if (status == 0) {
-                    startActivity(new Intent(LauncherActivity.this, MainActivity.class));
-                } else {
-                    Toast.makeText(LauncherActivity.this, result.toString(), Toast.LENGTH_SHORT);
-                }
+                String sessionid = jsonLoc.getString("sessionid");
+                Log.d(TAG, "handleMessage: "+jsonLoc.toString());
+
+                    if (status == 0) {
+                        SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = spf.edit();
+                        editor.putString("sessionid",sessionid);
+                        editor.commit();
+                        Log.d(TAG,sessionid);
+                        startActivity(new Intent(LauncherActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LauncherActivity.this, result.toString(), Toast.LENGTH_SHORT);
+                    }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
