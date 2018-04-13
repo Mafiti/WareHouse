@@ -20,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import yantai.yidian.warehouse.MainActivity;
 import yantai.yidian.warehouse.R;
-import yantai.yidian.warehouse.productIn.LocationSelectAutoOrManualActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
 import yantai.yidian.warehouse.util.ParamBuilder;
@@ -67,7 +66,7 @@ public class LauncherActivity extends AppCompatActivity implements WareApi {
                 }else {
                     HttpPost.sendHttpRequest(url, "", new HttpCallbackListener() {
                         @Override
-                        public void onFinish(String response) {
+                        public int onFinish(String response) {
                             Message msg = Message.obtain();
                             msg.what = 0;
                             msg.obj = response;
@@ -82,6 +81,7 @@ public class LauncherActivity extends AppCompatActivity implements WareApi {
 //                        //销毁当前Activity
 //                        finish();
                             //  Log.d(TAG, "onFinish: "+ response.toString());
+                            return 0;
                         }
 
                         @Override

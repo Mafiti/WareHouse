@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="yantai.yidian.warehouse.productIn.feedback.ScanFeedbackActivity">
+
+   <com.mondschein.titleview.TitleView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:title_text = "删除零散入库产品"
+       app:title_color = "#000000">
+
+   </com.mondschein.titleview.TitleView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/error">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="100dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:text="确实删除该条数据吗"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/btn_scatter_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:btn_src = "@mipmap/ch"
+        app:btn_text = "删除"
+        app:btn_text_size = "18"
+        app:btn_text_color = "#ffffff">
+
+    </com.example.mondschein.btnview.ButtonView>
+
+</LinearLayout>

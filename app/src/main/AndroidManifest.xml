@@ -14,9 +14,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity"
-            android:launchMode="singleTask"
-            >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,12 +36,10 @@
         <activity android:name=".productIn.SpecificWareSelectActivity" />
         <activity android:name=".productIn.feedback.ScanFeedbackActivity" />
         <activity android:name=".log.LauncherActivity" />
-        <activity android:name=".scatterIn.ScatterInActivity"></activity>
+        <activity android:name=".scatterIn.ScatterInActivity" />
         <activity android:name=".scatterIn.AddProductActivity" />
-        <activity android:name=".purchaseIn.AddPurInfoActivity" />
-        <activity android:name=".purchaseIn.Purchase" />
-        <activity android:name=".purchaseIn.PurWareChooseActivity" />
-        <activity android:name=".purchaseIn.Purchase_table"></activity>
+        <activity android:name=".UrlSetActivity" />
+        <activity android:name=".scatterIn.DeleteProductActivity"></activity>
     </application>
 
 </manifest>

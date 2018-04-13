@@ -7,4 +7,157 @@
     android:orientation="vertical"
     tools:context="yantai.yidian.warehouse.scatterIn.AddProductActivity">
 
+    <com.mondschein.titleview.TitleView
+        android:id="@+id/tv_scatter_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_text = "增加零散入库产品"
+        app:title_color = "#000000">
+
+    </com.mondschein.titleview.TitleView>
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="入库库位："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/edt_location"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:background="@drawable/edt_shape"
+            android:layout_weight="1"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp" />
+        <ImageView
+            android:id="@+id/img_search_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/search"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="产品品号："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/edt_productno"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:background="@drawable/edt_shape"
+            android:layout_weight="1"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp" />
+        <ImageView
+            android:id="@+id/img_search_product_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/search"/>
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="散件数量："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/edt_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edt_shape"
+            android:textSize="20sp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="散件重量："
+            android:textSize="20sp"
+            android:textColor="#000000"/>
+        <EditText
+            android:id="@+id/edt_weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edt_shape"
+            android:textSize="20sp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        android:layout_weight="1"/>
+
+    <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/btn_scatter_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:btn_src = "@mipmap/ch"
+        app:btn_text = "增加"
+        app:btn_text_size = "18"
+        app:btn_text_color = "#ffffff">
+
+    </com.example.mondschein.btnview.ButtonView>
 </LinearLayout>

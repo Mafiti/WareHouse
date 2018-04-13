@@ -21,8 +21,6 @@ import android.widget.Toast;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.example.mondschein.btnview.ButtonView;
-
 
 import org.json.JSONException;
 
@@ -37,8 +35,9 @@ import yantai.yidian.warehouse.productIn.feedback.ScanFeedbackActivity;
 import yantai.yidian.warehouse.scan.ScanActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
+import yantai.yidian.warehouse.util.WareApi;
 
-public class Product extends AppCompatActivity {
+public class Product extends AppCompatActivity implements WareApi {
     private static final String TAG="Product";
     public static final int UPDATE_TEXT=0;
     public static final int WRONG=1;
@@ -267,7 +266,7 @@ public class Product extends AppCompatActivity {
         Toast.makeText(Product.this,"点击",Toast.LENGTH_SHORT).show();
         SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
         String sessionId=spf.getString("sessionid",null);
-        String urlPath="http://10.0.2.2:8080/mes/mobile/mScanBox?sessionid="+sessionId;
+        String urlPath=URL_mScanBox+"sessionid="+sessionId;
 
         JSONObject jsonPost=new JSONObject();
         List<Object> tempList = new ArrayList<Object>();
@@ -307,7 +306,7 @@ public class Product extends AppCompatActivity {
         HttpPost.sendHttpRequest(urlPath,postData,new HttpCallbackListener() {
 
             @Override
-            public void onFinish(String response) {
+            public int onFinish(String response) {
                 // Toast.makeText(Product.this,response,Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onFinish: "+response);
                 if(response=="数据提交失败")
@@ -344,6 +343,7 @@ public class Product extends AppCompatActivity {
 
                 }
 
+                return 0;
             }
             @Override
             public void onError(Exception e) {
@@ -369,7 +369,7 @@ public class Product extends AppCompatActivity {
     protected void getLocate(){
         SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
         String sessionId=spf.getString("sessionid",null);
-        String urlPath="http://10.0.2.2:8080/mes/mobile/mBillInLoc?sessionid="+sessionId;
+        String urlPath=URL_mBillInLoc+"sessionid="+sessionId;
         String postData = "";
 
         org.json.JSONObject object = new org.json.JSONObject();
@@ -388,7 +388,7 @@ public class Product extends AppCompatActivity {
 
         HttpPost.sendHttpRequest(urlPath, postData, new HttpCallbackListener() {
             @Override
-            public void onFinish(String response) {
+            public int onFinish(String response) {
                 Log.d(TAG, "onFinish: "+response);
                 if(response=="数据提交失败")
                 {
@@ -396,6 +396,7 @@ public class Product extends AppCompatActivity {
                     message.what = WRONG;
                     handler.sendMessage(message);
                 }else {
+                    locationInfoList.clear();
                     // 获取响应的正文
                     JSONObject jsonObject1 = JSONObject.fromObject(response);
                     int status = jsonObject1.getInt("status");
@@ -423,6 +424,7 @@ public class Product extends AppCompatActivity {
 
                 }
 
+                return 0;
             }
 
             @Override

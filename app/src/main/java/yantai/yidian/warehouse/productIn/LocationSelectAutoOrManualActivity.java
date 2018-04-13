@@ -129,63 +129,6 @@ public class LocationSelectAutoOrManualActivity extends AppCompatActivity implem
             }
         });
 
-       /* help=(ImageButton) findViewById(R.id.imageView);
-        testview1=(EditText) findViewById(R.id.editText);
-        rb = (RadioButton) findViewById(R.id.rb1);
-        search2 = (ImageButton) findViewById(R.id.search2);
-
-
-        testview1.setOnTouchListener(new View.OnTouchListener() {
-            //按住和松开的标识
-            int touch_flag=0;
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                touch_flag++;
-                if(touch_flag==2){
-                    touch_flag=0;
-                    rb.setChecked(false);
-                }
-                return false;
-            }
-        });
-
-        final GlobalValue globalValue = new GlobalValue();
-        rb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(v==rb) {
-                    rb.setChecked(true);
-                    testview1.clearFocus();
-                    closeKeyboard();
-                }
-            }
-        });
-        help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(v==help)
-                {
-                    Intent intent = new Intent(LocationSelectAutoOrManualActivity.this, Help01Activity.class);
-                    startActivity(intent);
-                    LocationSelectAutoOrManualActivity.this.finish();
-                }
-            }
-        });
-
-        search2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(v==search2)
-                {
-                    Intent intent = new Intent(LocationSelectAutoOrManualActivity.this, LocationSelectActivity.class);
-                    startActivity(intent);
-                    LocationSelectAutoOrManualActivity.this.finish();
-                }
-            }
-        });
-        */
-
     }
 
     public void initView(){

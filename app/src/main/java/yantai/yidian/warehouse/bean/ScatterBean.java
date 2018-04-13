@@ -1,10 +1,12 @@
 package yantai.yidian.warehouse.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by BaiTao on 2018/4/10.
  */
 
-public class ScatterBean {
+public class ScatterBean implements Serializable {
 
     private String productId;//产品品号
     private String location;//存放库位

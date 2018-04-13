@@ -17,16 +17,27 @@ import yantai.yidian.warehouse.bean.ScatterBean;
  * Created by BaiTao on 2018/4/10.
  */
 
-public class ScatterAdapter extends BaseAdapter {
+public class ScatterAdapter extends BaseAdapter implements View.OnClickListener {
 
     private List<ScatterBean> list;
     private Context context;
     private LayoutInflater inflater;
+    private Callback callback;
     private ViewHolder viewHolder;
 
-    public ScatterAdapter(List<ScatterBean> list, Context context) {
+    @Override
+    public void onClick(View view) {
+        callback.click(view);
+    }
+
+    public interface Callback{
+       void click(View v);
+    }
+
+    public ScatterAdapter(List<ScatterBean> list, Context context,Callback callback) {
         this.list = list;
         this.context = context;
+        this.callback = callback;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -66,6 +77,10 @@ public class ScatterAdapter extends BaseAdapter {
         viewHolder.location.setText(list.get(position).getLocation());
         viewHolder.num.setText(list.get(position).getNum());
         viewHolder.weight.setText(list.get(position).getWeight());
+        viewHolder.alter.setOnClickListener(this);
+        viewHolder.delete.setOnClickListener(this);
+        viewHolder.alter.setTag(position);
+        viewHolder.delete.setTag(position);
 
         return convertView;
     }

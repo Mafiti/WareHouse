@@ -13,8 +13,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mondschein.btnview.ButtonView;
-
 import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
@@ -27,8 +25,9 @@ import yantai.yidian.warehouse.productIn.CheckActivity;
 import yantai.yidian.warehouse.scan.ScanActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
+import yantai.yidian.warehouse.util.WareApi;
 
-public class Product_table extends AppCompatActivity {
+public class Product_table extends AppCompatActivity implements WareApi {
     private static final String TAG="Product_table";
     public static final int WRONG=1;
     public static final int OK=2;
@@ -107,7 +106,7 @@ public class Product_table extends AppCompatActivity {
     {
         SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
         String sessionId=spf.getString("sessionid",null);
-        String urlPath="http://10.0.2.2:8080/mes/mobile/mBillSubmit?sessionid="+sessionId;
+        String urlPath=URL_mBillSubmit+"sessionid="+sessionId;
         JSONObject jsonPost=new JSONObject();
         List<Object> tempList = new ArrayList<Object>();
         JSONObject jsonObj = new JSONObject();
@@ -134,7 +133,7 @@ public class Product_table extends AppCompatActivity {
         HttpPost.sendHttpRequest(urlPath,postData,new HttpCallbackListener() {
 
             @Override
-            public void onFinish(String response) {
+            public int onFinish(String response) {
                 Log.d(TAG, "onFinish: "+response);
                 if(response=="数据提交失败")
                 {
@@ -148,6 +147,7 @@ public class Product_table extends AppCompatActivity {
 
                 }
 
+                return 0;
             }
             @Override
             public void onError(Exception e) {

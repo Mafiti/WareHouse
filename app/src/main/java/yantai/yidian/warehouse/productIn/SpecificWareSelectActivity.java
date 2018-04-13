@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.mondschein.btnview.ButtonView;
 
+
 import java.util.List;
 
 import yantai.yidian.warehouse.R;
@@ -100,10 +101,15 @@ public class SpecificWareSelectActivity extends AppCompatActivity implements War
             case "采购入库":
                 startActivity(new Intent(SpecificWareSelectActivity.this, AddPurInfoActivity.class));
                 break;
+
             case "退货入库":
 
                 break;
             case "零散入库":
+                SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
+                SharedPreferences.Editor editor = spf.edit();
+                editor.putString("first",0+"");
+                editor.commit();
                 startActivity(new Intent(SpecificWareSelectActivity.this,ScatterInActivity.class));
                 break;
             case "生产退货入库":
