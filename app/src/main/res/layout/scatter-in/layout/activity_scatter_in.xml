@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mondschein.titleview.TitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_text = "零散入库"
+        app:title_color = "#000000">
+
+    </com.mondschein.titleview.TitleView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_operator_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="17dp"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:text="移入仓库"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="17dp"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:text="操作员"/>
+        <TextView
+            android:id="@+id/tv_wareName"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="成品一库"
+            android:textSize="20sp"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_operatorName"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="180dp"
+            android:text="张三"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#ffffff"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_scatter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <ImageView
+        android:id="@+id/img_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/add_img"/>
+
+    <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/btn_in_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:btn_src = "@mipmap/ch"
+        app:btn_text = "确定入库"
+        app:btn_text_size = "18"
+        app:btn_text_color = "#ffffff"
+        />
+
+</LinearLayout>

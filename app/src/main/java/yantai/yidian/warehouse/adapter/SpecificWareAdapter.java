@@ -24,30 +24,12 @@ public class SpecificWareAdapter extends BaseAdapter {
     private List<SpecificWareBean> list;
     private Context context;
     private LayoutInflater inflater;
-    SpecificWareBean specificWareBean;
-    private int index = -1;
     HashMap<String,Boolean> states=new HashMap<String,Boolean>();//用于记录每个RadioButton的状态，并保证只可选一个
 
     public SpecificWareAdapter(List<SpecificWareBean> list, Context context) {
         this.list = list;
         this.context = context;
-        inflater = LayoutInflater.from(context);
-    }
-
-    public void setList(List<SpecificWareBean> specificWareBeans) {
-        this.list = specificWareBeans;
-    }
-
-    public void select(int position) {
-        if (!list.get(position).isSelected()) {
-            list.get(position).setSelected(true);
-            for (int i = 0; i < list.size(); i++) {
-                if (i != position) {
-                    list.get(i).setSelected(false);
-                }
-            }
-        }
-        notifyDataSetChanged();
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -80,49 +62,42 @@ public class SpecificWareAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        specificWareBean = (SpecificWareBean) getItem(position);
-        viewHolder.rbtn.setChecked(specificWareBean.isSelected());
 
-        //final RadioButton rbtn = (RadioButton) convertView.findViewById(R.id.item_rb_ware_check);
-        //viewHolder.rbtn = rbtn;
 
         viewHolder.tv_ware_id.setText(list.get(position).getWare_id());
         viewHolder.tv_ware_name.setText(list.get(position).getWare_name());
 
-        /*
-        viewHolder.rbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //重置，确保最多只有一项被选中
-                for(String key:states.keySet()){
-                    states.put(key, false);
 
-                }
-                states.put(String.valueOf(position), rbtn.isChecked());
-                SpecificWareAdapter.this.notifyDataSetChanged();
-            }
-        });
 
         boolean res=false;
-        if(states.get(String.valueOf(position)) == null || states.get(String.valueOf(position))== false){
+        if(getStates(position)==null||
+                getStates(position)==false)//判断当前位置的radiobutton点击状态
+        {
             res=false;
-            states.put(String.valueOf(position), false);
+            setStates(position, false);
+
+        }else{
+            res=true;
         }
-        else
-            res = true;
-
         viewHolder.rbtn.setChecked(res);
-        */
-        /*
-        SpecificWareBean specificWareBean = list.get(position);
-        TextView tv_ware_name = (TextView) view.findViewById(R.id.item_ware_name);
-        TextView tv_organization = (TextView) view.findViewById(R.id.item_ware_id);
-
-        tv_ware_name.setText(specificWareBean.ware_name);
-        tv_organization.setText(specificWareBean.ware_id);
-        */
 
         return convertView;
+    }
+    public void clearStates(int position){
+        // 重置，确保最多只有一项被选中
+        for(String key:states.keySet()){
+            states.put(key,false);
+        }
+        states.put(String.valueOf(position), true);
+    }
+
+    //用于获取状态值
+    public Boolean getStates(int position){
+        return states.get(String.valueOf(position));
+    }
+    //设置状态值
+    public void setStates(int position,boolean isChecked){
+        states.put(String.valueOf(position),false);
     }
     static class ViewHolder{
         RadioButton rbtn;

@@ -22,6 +22,7 @@ android {
             res.srcDirs =
                     [
                             'src/main/res/layout/product-in',
+                            'src/main/res/layout/scatter-in',
                             'src/main/res/layout',
                             'src/main/res'
                     ]
@@ -58,4 +59,5 @@ dependencies {
     implementation files('libs/javax.servlet.jsp.jstl.jar')
     implementation files('libs/json-lib-2.4-jdk15.jar')
     implementation files('libs/jstl-impl.jar')
+    implementation files('libs/gson-2.2.4.jar')
 }

@@ -78,10 +78,12 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+       String title;
         switch (view.getId()){
             //生产入库
             case R.id.product_in:
-                startActivity(new Intent(getActivity(),ProductInActivity.class));
+                title = "生产入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(true);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
@@ -94,6 +96,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //采购入库
             case R.id.purchase_in:
+                title = "采购入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(true);
                 llyt_return_in.setSelected(false);
@@ -106,6 +110,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //退货入库
             case R.id.return_in:
+                title = "退货入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(true);
@@ -118,6 +124,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //零散入库
             case R.id.scatter_in:
+                title = "零散入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
@@ -130,6 +138,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //生产退货入库
             case R.id.product_return_in:
+                title = "生产退货入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
@@ -142,6 +152,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //空箱入库
             case R.id.empty_in:
+                title = "空箱入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
@@ -154,6 +166,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //产线废料入库
             case R.id.productline_waste_in:
+                title = "产线废料入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
@@ -166,6 +180,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //移库
             case R.id.move_in:
+                title = "移库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
@@ -178,6 +194,8 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
             //仓库废料入库
             case R.id.warehouse_waste_in:
+                title = "仓库废料入库";
+                startActivityByTitle(title);
                 llyt_product_in.setSelected(false);
                 llyt_purchase_in.setSelected(false);
                 llyt_return_in.setSelected(false);
@@ -190,5 +208,12 @@ public class InOpFragment extends Fragment implements View.OnClickListener{
                 break;
         }
 
+    }
+
+    public void startActivityByTitle(String title){
+        Intent intent = new Intent();
+        intent.putExtra("title",title);
+        intent.setClass(getActivity(),ProductInActivity.class);
+        startActivity(intent);
     }
 }
