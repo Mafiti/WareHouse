@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap.Vertical"
+    android:layout_alignParentBottom="true">
+
+    <LinearLayout style="@style/MatchWrap.Horizontal">
+
+        <TextView
+            android:id="@+id/table_detail_pur"
+            style="@style/AutoWrapTv2"
+            android:text="单据详情"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/MatchWrap.Horizontal">
+
+        <TextView
+            android:id="@+id/scan_next_pur"
+            style="@style/AutoWrapTv3"
+            android:text="继续扫码"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

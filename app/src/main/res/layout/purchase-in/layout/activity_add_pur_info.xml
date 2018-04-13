@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".purchaseIn.Purchase">
+
+    <com.mondschein.titleview.TitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_text = "@string/add_new_item_info"
+        app:title_color = "@color/black"
+        android:id="@+id/title_add_info"
+        >
+
+
+    </com.mondschein.titleview.TitleView>
+
+    <LinearLayout
+        android:layout_below="@id/title_add_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:text="@string/item_num"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/item_num_text_pur"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="40dp"
+                android:hint="@string/click_edit"
+                android:completionThreshold="2"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                />
+
+            <ImageView
+                android:id="@+id/close1_pur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/x"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:text="@string/item_type"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <AutoCompleteTextView
+                android:id="@+id/item_type_text_pur"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="40dp"
+                android:hint="@string/click_edit"
+                android:completionThreshold="2"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                />
+
+            <Button
+                android:id="@+id/select_type"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/select_type"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:background="@mipmap/ch"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:text="@string/produce_time"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <AutoCompleteTextView
+                android:id="@+id/produce_time_text_pur"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="40dp"
+                android:hint="@string/click_edit"
+                android:completionThreshold="2"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                />
+
+            <ImageView
+                android:id="@+id/close3_pur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/x"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:text="@string/purchase_from"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <AutoCompleteTextView
+                android:id="@+id/purchase_vender_text_pur"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="40dp"
+                android:hint="@string/click_edit"
+                android:completionThreshold="2"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                />
+
+            <ImageView
+                android:id="@+id/close4_pur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/x"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_enter_to_ware_pur"
+        android:layout_marginBottom="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="38dp"
+        android:layout_marginLeft="38.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ch"
+        android:text="@string/next"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_backgroud"
+    tools:context=".productIn.WareChooseActivity">
+
+    <com.mondschein.titleview.TitleView
+        android:id="@+id/title_ware_choose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_text = "@string/pro_type_choose"
+        app:title_color = "#000000"
+        >
+
+    </com.mondschein.titleview.TitleView>
+
+    <RadioButton
+        android:id="@+id/btn_a_ware"
+        android:layout_below="@id/title_ware_choose"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/choose_ware_btn"
+        android:text="@string/a_ware"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:button="@null"
+        android:gravity="center"
+        />
+
+    <RadioButton
+        android:id="@+id/btn_b_ware"
+        android:layout_below="@id/btn_a_ware"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="6.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/choose_ware_btn"
+        android:text="@string/b_ware"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:button="@null"
+        android:gravity="center"
+        />
+    <RadioButton
+        android:id="@+id/btn_as_ware"
+        android:layout_below="@id/btn_b_ware"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="6.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/choose_ware_btn"
+        android:text="@string/as_ware"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:button="@null"
+        android:gravity="center"
+        />
+
+    <RadioButton
+        android:id="@+id/btn_..._ware"
+        android:layout_below="@id/btn_as_ware"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="6.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/ellipsis"
+        android:button="@null"
+        />
+    <com.example.mondschein.btnview.ButtonView
+        android:id="@+id/btn_production_type_next"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:btn_src = "@drawable/btn_white"
+        app:btn_text = "@string/enter"
+        app:btn_text_size = "18"
+        app:btn_text_color = "@color/tab_blue"
+        >
+
+    </com.example.mondschein.btnview.ButtonView>
+</RelativeLayout>

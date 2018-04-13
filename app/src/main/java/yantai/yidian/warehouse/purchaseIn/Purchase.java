@@ -1,13 +1,13 @@
-package yantai.yidian.warehouse.productIn.produce_table;
+package yantai.yidian.warehouse.purchaseIn;
 
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,14 +15,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
-import com.example.mondschein.btnview.ButtonView;
-
 
 import org.json.JSONException;
 
@@ -34,57 +32,50 @@ import yantai.yidian.warehouse.bean.ProductBean;
 import yantai.yidian.warehouse.productIn.LocationInfo;
 import yantai.yidian.warehouse.productIn.LocationSelectActivity;
 import yantai.yidian.warehouse.productIn.feedback.ScanFeedbackActivity;
+import yantai.yidian.warehouse.productIn.produce_table.Product_table;
 import yantai.yidian.warehouse.scan.ScanActivity;
 import yantai.yidian.warehouse.util.HttpCallbackListener;
 import yantai.yidian.warehouse.util.HttpPost;
 
-public class Product extends AppCompatActivity {
-    private static final String TAG="Product";
+public class Purchase extends AppCompatActivity implements View.OnClickListener{
+    private static final String TAG="Purchase";
     public static final int UPDATE_TEXT=0;
     public static final int WRONG=1;
     private EditText box_number;
-    private EditText product_noid;
-    private EditText batch;
     private EditText location;
-    private EditText class_time;
     private EditText item_number;
     private Button select_location;
     private TextView table_detail;
     private TextView scan_next;
     private Button post;
     private ImageView scan;
-    private ImageView x1;
     private ImageView x2;
-    private ImageView x3;
-    private ImageView x4;
     private int    Box_id;      //箱ID
-    private List<LocationInfo> locationInfoList = locationInfoList = new ArrayList<LocationInfo>();
+    private RadioButton radioButtonYes;
+    private RadioButton radioButtonNo;
 
+    private List<LocationInfo> locationInfoList = locationInfoList = new ArrayList<LocationInfo>();
+    private String classsTime;     //班次
     private int Dev_id;    //产线
-    public static String Product_noid;    //产品品号
-    private String Classs_time;     //班次
+    public static String product_noid;    //产品品号
     private String Item_number;     //个数
-    public static String Batch;    //生产批次
     private String Location;    //库位
+    public static String batch;    //生产批次
+    public String vender;   //采购厂家
+    public String itemType;  //产品类型
     public static List<ProductBean>  productBeanList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_purchase);
 
 
         inintView();
 
 
     }
-    /*   private Handler handler=new Handler(new Handler.Callback() {
-           @Override
-           public boolean handleMessage(Message message) {
-               load();
-               return false;
-           }
-       });*/
+
     private Handler handler=new myHandler();
     class myHandler extends Handler
     {
@@ -104,167 +95,156 @@ public class Product extends AppCompatActivity {
 
     public void clearText(){
         box_number.setText("");
-        product_noid.setText("");
-        batch.setText("");
         location.setText("");
-        class_time.setText("");
         item_number.setText("");
 
     }
     protected void inintView()
     {
-        box_number=(EditText)findViewById(R.id.box_number1);
-        product_noid=(EditText)findViewById(R.id.product_noid);
-        batch=(EditText)findViewById(R.id.batch);
-        location=(EditText)findViewById(R.id.location1);
-        select_location=(Button)findViewById(R.id.select_location);
-        class_time=(EditText)findViewById(R.id.class_time);
-        item_number=(EditText)findViewById(R.id.item_number);
-        clearText();
-        scan_next=(TextView) findViewById(R.id.scan_next);
-        table_detail=(TextView)findViewById(R.id.table_detail);
-        scan=(ImageView)findViewById(R.id.scan);
-        x1=(ImageView)findViewById(R.id.x1);
-        x2=(ImageView)findViewById(R.id.x2);
-        x3=(ImageView)findViewById(R.id.x3);
-        x4=(ImageView)findViewById(R.id.x4);
-        post=(Button)findViewById(R.id.post);
-        post.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
+        Intent intent = this.getIntent();
+        product_noid = intent.getStringExtra("textNum");
+        itemType = intent.getStringExtra("textType");
+        batch = intent.getStringExtra("textBetch");
+        vender = intent.getStringExtra("textVender");
 
+        Log.d(TAG, "inintView: " + product_noid);
+        Log.d(TAG, "inintView: " + itemType);
+        Log.d(TAG, "inintView: " + batch);
+        Log.d(TAG, "inintView: " + vender);
+
+
+
+        radioButtonYes = (RadioButton) findViewById(R.id.rb_full_yes);
+        radioButtonNo = (RadioButton)  findViewById(R.id.rb_full_no);
+        box_number=(EditText)findViewById(R.id.box_number1_pur);
+        location=(EditText)findViewById(R.id.location1_pur);
+        select_location=(Button)findViewById(R.id.select_location_pur);
+        item_number=(EditText)findViewById(R.id.item_number_pur);
+        clearText();
+        scan_next=(TextView) findViewById(R.id.scan_next_pur);
+        table_detail=(TextView)findViewById(R.id.table_detail_pur);
+        scan=(ImageView)findViewById(R.id.scan_pur);
+        x2=(ImageView)findViewById(R.id.x2_pur);
+        post=(Button)findViewById(R.id.post_pur);
+        item_number.setEnabled(false);
+        //getPost();
+        post.setOnClickListener(this);
+        scan.setOnClickListener(this);
+        radioButtonYes.setOnClickListener(this);
+        radioButtonNo.setOnClickListener(this);
+        x2.setOnClickListener(this);
+        select_location.setOnClickListener(this);
+        scan_next.setOnClickListener(this );
+        table_detail.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.post_pur:
                 getPost();
                 getLocate();
-            }
-        });
-        //getPost();
-        scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+                locationInfoList.clear();
+                break;
+            case R.id.scan_pur:
                 //new IntentIntegrator(ScanActivity.this).initiateScan(); //初始化扫描
-                Intent intent = new Intent(Product.this, ScanActivity.class);
+                Intent intent = new Intent(Purchase.this, ScanActivity.class);
                 startActivityForResult(intent, 1);
-
-            }
-        });
-        x1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                product_noid.setText("");
-
-            }
-        });
-        x2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                batch.setText("");
-            }
-        });
-        x3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                class_time.setText("");
-            }
-        });
-        x4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.x2:
                 item_number.setText("");
-            }
-        });
-        scan_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // getPost();
-                if(box_number.getText().toString().equals("") || product_noid.getText().toString().equals("") || batch.getText().toString().equals("") || class_time.getText().toString().equals("") ||item_number.getText().toString().equals("") ||location.getText().toString().equals("")) {
-                    Toast.makeText(Product.this, "有一项为空", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.scan_next_pur:
+                if(box_number.getText().toString().isEmpty()||item_number.getText().toString().isEmpty()||location.getText().toString().isEmpty()){
+                    Toast.makeText(Purchase.this,"有数据为空",Toast.LENGTH_SHORT).show();
                 }else {
                     ProductBean productBean=new ProductBean();
                     //还要判断信息是否为空
                     productBean.setBox_id(Box_id);
                     productBean.setDev_id(Dev_id);
                     productBean.setBox_num(box_number.getText().toString());
-                    int a=0;
-                    if (!product_noid.getText().toString().equals("")){
-                       a =Integer.parseInt(product_noid.getText().toString());
-                    }
+
+                    int a =Integer.parseInt(product_noid.toString());
+
                     productBean.setProduct_noid(a);
-                    productBean.setClasss_time(class_time.getText().toString());       //可以添加逻辑，根据获取的系统时间判断白班还是夜班
+                    productBean.setClasss_time(classsTime.toString());       //可以添加逻辑，根据获取的系统时间判断白班还是夜班
                     int num=0;
                     if (!item_number.getText().toString().equals("")){
                         num=Integer.parseInt(item_number.getText().toString());
                     }
                     productBean.setItem_number(num);     //个数这里我不太理解
-                    productBean.setBatch(batch.getText().toString());
+                    productBean.setBatch(batch.toString());
                     productBean.setLocation(location.getText().toString());
+                    String fullFlag = "";
+                    if(radioButtonYes.isChecked()){
+                        fullFlag = "Y";
+                    }else if(radioButtonNo.isChecked()){
+                        fullFlag = "N";
+                    }
+                    productBean.setFullFlag(fullFlag.toString());
                     productBeanList.add(productBean);
-                    Toast.makeText(Product.this,"提交成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Purchase.this,"提交成功",Toast.LENGTH_SHORT).show();
                     box_number.setText("");
-                    product_noid.setText("");
-                    batch.setText("");
-                    class_time.setText("");
                     item_number.setText("");
                     location.setText("");
                 }
-
-            }
-        });
-        table_detail.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                if(!box_number.getText().toString().equals("") && !product_noid.getText().toString().equals("") && !batch.getText().toString().equals("") && !class_time.getText().toString().equals("") && !item_number.getText().toString().equals("") && !location.getText().toString().equals("")) {
+                break;
+            case R.id.table_detail_pur:
+                if(box_number.getText().toString().isEmpty()||item_number.getText().toString().isEmpty()||location.getText().toString().isEmpty()){
+                    Intent intent2=new Intent(Purchase.this,Purchase_table.class);
+                    startActivity(intent2);
+                }else {
                     ProductBean productBean=new ProductBean();
                     //还要判断信息是否为空
                     productBean.setBox_id(Box_id);
                     productBean.setDev_id(Dev_id);
                     productBean.setBox_num(box_number.getText().toString());
-                    int a=0;
-                    if (!product_noid.getText().toString().equals("")){
-                        a =Integer.parseInt(product_noid.getText().toString());
-                    }
+
+                    int a =Integer.parseInt(product_noid.toString());
+
                     productBean.setProduct_noid(a);
-                    productBean.setClasss_time(class_time.getText().toString());       //可以添加逻辑，根据获取的系统时间判断白班还是夜班
+                    productBean.setClasss_time(classsTime.toString());       //可以添加逻辑，根据获取的系统时间判断白班还是夜班
                     int num=0;
                     if (!item_number.getText().toString().equals("")){
                         num=Integer.parseInt(item_number.getText().toString());
                     }
                     productBean.setItem_number(num);     //个数这里我不太理解
-                    productBean.setBatch(batch.getText().toString());
+                    productBean.setBatch(batch.toString());
                     productBean.setLocation(location.getText().toString());
                     productBeanList.add(productBean);
-                    Toast.makeText(Product.this,"提交成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Purchase.this,"提交成功",Toast.LENGTH_SHORT).show();
                     box_number.setText("");
-                    product_noid.setText("");
-                    batch.setText("");
-                    class_time.setText("");
                     item_number.setText("");
                     location.setText("");
-                    Intent intent=new Intent(Product.this,Product_table.class);
-                    startActivity(intent);
-                }else {
-                    Intent intent=new Intent(Product.this,Product_table.class);
-                    startActivity(intent);
+                    Intent intent3=new Intent();
+                    intent3.setClass(Purchase.this,Purchase_table.class);
+
+                    startActivity(intent3);
                 }
 
-            }
-        });
-        select_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
+                break;
+            case R.id.select_location_pur:
+                Intent intent1 = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("locationInfoList", (ArrayList<LocationInfo>) locationInfoList);
-                intent.putExtras(bundle);
-                intent.setClass(Product.this, LocationSelectActivity.class);
-                startActivityForResult(intent, 2);
-                locationInfoList.clear();
-            }
-        });
+                intent1.putExtras(bundle);
+                intent1.setClass(Purchase.this, LocationSelectActivity.class);
+                startActivityForResult(intent1, 2);
+                break;
+            case R.id.rb_full_yes:
+                item_number.setEnabled(false);
+                break;
+            case R.id.rb_full_no:
+                item_number.setEnabled(true);
+                break;
+        }
     }
+
     protected void getPost()
     {
-        Toast.makeText(Product.this,"点击",Toast.LENGTH_SHORT).show();
+        Toast.makeText(Purchase.this,"点击",Toast.LENGTH_SHORT).show();
         SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);
         String sessionId=spf.getString("sessionid",null);
         String urlPath="http://10.0.2.2:8080/mes/mobile/mScanBox?sessionid="+sessionId;
@@ -321,7 +301,7 @@ public class Product extends AppCompatActivity {
                     int status = jsonObject1.getInt("status");
                     Log.d(TAG,status+"");
                     if (status!=0){
-                        Intent intent = new Intent(Product.this, ScanFeedbackActivity.class);
+                        Intent intent = new Intent(Purchase.this, ScanFeedbackActivity.class);
                         intent.putExtra("status",status);
                         startActivity(intent);
                     }else {
@@ -329,10 +309,9 @@ public class Product extends AppCompatActivity {
                             JSONObject item = jsonArray.getJSONObject(i); //每条记录又由几个Object对象组成
                             Box_id=item.getInt("bill_id");
                             Dev_id=item.getInt("dev_id");            //产线
-                            Product_noid = item.getString("product_noid");    //产品品号
-                            Classs_time = item.getString("class_type_name");     //班次
+                            //Product_noid = item.getString("product_noid");    //产品品号
+                            classsTime = item.getString("class_type_name");     //班次
                             Item_number = item.getString("fact_num");     //个数
-                            Batch = item.getString("batch");    //生产批次
                             //Location = item.getString("loc_id");    //库位
                             Log.d(TAG, "onFinish: loading");
                             Message message = new Message();
@@ -356,15 +335,12 @@ public class Product extends AppCompatActivity {
     }
     protected void load(){
 
-        product_noid.setText(Product_noid);
 
-        class_time.setText(Classs_time);
         item_number.setText(Item_number);
-        batch.setText(Batch);
         location.setText(Location);
     }
     protected void toast(){
-        Toast.makeText(Product.this,"数据提交失败",Toast.LENGTH_SHORT).show();
+        Toast.makeText(Purchase.this,"数据提交失败",Toast.LENGTH_SHORT).show();
     }
     protected void getLocate(){
         SharedPreferences spf = getSharedPreferences("setting",MODE_PRIVATE);

@@ -93,13 +93,7 @@ public class CheckActivity extends AppCompatActivity {
             }
         });
 
-        View.OnClickListener listener=new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(CheckActivity.this,"helo",Toast.LENGTH_SHORT).show();
 
-            }
-        };
         buttonbottom1.setButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

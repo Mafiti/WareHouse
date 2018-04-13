@@ -22,4 +22,6 @@ public interface WareApi {
     String PARAM_userid = "userid";
     String PAREM_password = "password";
 
+    String URL_mBillPurchaseDetail = URL_HOST + "mBillPurchaseDetail?";
+
 }

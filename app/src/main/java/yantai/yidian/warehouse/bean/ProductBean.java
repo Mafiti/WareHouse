@@ -1,12 +1,15 @@
 package yantai.yidian.warehouse.bean;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by 李非 on 2018/3/30.
  * 产品类，包含产品的一些基本属性
  */
 
-public class ProductBean {
+public class ProductBean implements Parcelable {
     private int    box_id;    //箱ID
     private String box_num; //箱码
     private int    box_type;    //箱类型
@@ -17,6 +20,11 @@ public class ProductBean {
     private Integer item_number;    //个数
     private String  batch;   //生产批次
     private String  location;       //库位
+    private String vender;   //采购厂家
+    private String fullFlag;  //是否满箱
+
+    public ProductBean() {
+    }
 
     public int getBox_id() {
         return box_id;
@@ -95,4 +103,67 @@ public class ProductBean {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public void setFullFlag(String fullFlag) {
+        this.fullFlag = fullFlag;
+    }
+
+    public void setVender(String vender) {
+        this.vender = vender;
+    }
+
+    public String getFullFlag() {
+        return fullFlag;
+    }
+
+    public String getVender() {
+        return vender;
+    }
+
+    public static final Creator<ProductBean> CREATOR = new Creator<ProductBean>() {
+        @Override
+        public ProductBean createFromParcel(Parcel in) {
+            return new ProductBean(in);
+        }
+
+        @Override
+        public ProductBean[] newArray(int size) {
+            return new ProductBean[size];
+        }
+    };
+
+    protected ProductBean(Parcel in) {
+        box_num = in.readString();
+        classs_time = in.readString();
+        batch = in.readString();
+        location = in.readString();
+        box_id = in.readInt();
+        dev_id = in.readInt();
+        box_type = in.readInt();
+        product_noid = in.readInt();
+        item_number = in.readInt();
+        fullFlag = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(box_num);
+        parcel.writeString(classs_time);
+        parcel.writeString(batch);
+        parcel.writeString(location);
+        parcel.writeInt(box_id);
+        parcel.writeInt(dev_id);
+        parcel.writeInt(box_type);
+        parcel.writeInt(product_noid);
+        parcel.writeInt(item_number);
+        parcel.writeString(vender);
+        parcel.writeString(fullFlag);
+
+    }
+
 }

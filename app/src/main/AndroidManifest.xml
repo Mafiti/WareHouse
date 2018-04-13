@@ -5,8 +5,8 @@
     <!-- zxing权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!--网络权限-->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,37 +14,36 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".productIn.ProductInActivity" >
-
-        </activity>
-        <activity android:name=".productIn.WareChooseActivity" >
-
-        </activity>
-        <activity android:name=".productIn.LocationSelectActivity" />
-        <activity android:name=".productIn.Help01Activity" />
-        <activity android:name=".scan.ScanActivity" />
-        <activity android:name=".productIn.CheckActivity"/>
-        <activity
-            android:name=".productIn.produce_table.Product"
-            android:windowSoftInputMode="adjustPan|stateHidden" >
-
-        </activity>
-        <activity
-            android:name=".productIn.produce_table.Product_table"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".productIn.SpecificWareSelectActivity" />
-        <activity android:name=".productIn.feedback.ScanFeedbackActivity"></activity>
-        <activity android:name=".log.LauncherActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".productIn.ProductInActivity" />
+        <activity android:name=".productIn.WareChooseActivity" />
+        <activity android:name=".productIn.LocationSelectActivity" />
+        <activity android:name=".productIn.Help01Activity" />
+        <activity android:name=".scan.ScanActivity" />
+        <activity android:name=".productIn.CheckActivity" />
+        <activity
+            android:name=".productIn.produce_table.Product"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".productIn.produce_table.Product_table"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".productIn.SpecificWareSelectActivity" />
+        <activity android:name=".productIn.feedback.ScanFeedbackActivity" />
+        <activity android:name=".log.LauncherActivity" />
+        <activity android:name=".scatterIn.ScatterInActivity"></activity>
+        <activity android:name=".scatterIn.AddProductActivity" />
+        <activity android:name=".purchaseIn.AddPurInfoActivity" />
+        <activity android:name=".purchaseIn.Purchase" />
+        <activity android:name=".purchaseIn.PurWareChooseActivity" />
+        <activity android:name=".purchaseIn.Purchase_table"></activity>
     </application>
 
 </manifest>

@@ -34,7 +34,8 @@ public class LocationSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_select);
-
+        data_list = new ArrayList<>();
+        data_list.clear();
         //监听下方确定按钮点击事件
         ButtonView buttonView= (ButtonView) findViewById(R.id.buttonbottom);
         buttonView.setButtonListener(new View.OnClickListener() {

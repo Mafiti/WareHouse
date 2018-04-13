@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pruchase_in_ware">采购入库</string>
+    <string name="add_new_item_info">新增采购产品信息</string>
+    <string name="item_num">产品品号</string>
+    <string name="click_edit">点击输入</string>
+    <string name="item_type">产品类别</string>
+    <string name="produce_time">生产批次</string>
+    <string name="purchase_from">采购厂家</string>
+    <string name="select_type">选择类别</string>
+    <string name="item">个数</string>
+    <string name="next_pur">下一步</string>
+
+</resources>
