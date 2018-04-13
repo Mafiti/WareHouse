@@ -287,7 +287,7 @@ public class Purchase extends AppCompatActivity implements View.OnClickListener{
         HttpPost.sendHttpRequest(urlPath,postData,new HttpCallbackListener() {
 
             @Override
-            public void onFinish(String response) {
+            public int onFinish(String response) {
                 // Toast.makeText(Product.this,response,Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onFinish: "+response);
                 if(response=="数据提交失败")
@@ -295,6 +295,7 @@ public class Purchase extends AppCompatActivity implements View.OnClickListener{
                     Message message = new Message();
                     message.what = WRONG;
                     handler.sendMessage(message);
+                    return 0;
                 }else {
                     JSONObject jsonObject1 = JSONObject.fromObject(response);
                     JSONArray jsonArray = jsonObject1.getJSONArray("result");//里面有一个数组数据，可以用getJSONArray获取数组
@@ -319,7 +320,9 @@ public class Purchase extends AppCompatActivity implements View.OnClickListener{
                             handler.sendMessage(message);
 
                         }
+
                     }
+                    return 1;
 
                 }
 
@@ -364,13 +367,14 @@ public class Purchase extends AppCompatActivity implements View.OnClickListener{
 
         HttpPost.sendHttpRequest(urlPath, postData, new HttpCallbackListener() {
             @Override
-            public void onFinish(String response) {
+            public int onFinish(String response) {
                 Log.d(TAG, "onFinish: "+response);
                 if(response=="数据提交失败")
                 {
                     Message message = new Message();
                     message.what = WRONG;
                     handler.sendMessage(message);
+                    return 0;
                 }else {
                     // 获取响应的正文
                     JSONObject jsonObject1 = JSONObject.fromObject(response);
@@ -395,7 +399,7 @@ public class Purchase extends AppCompatActivity implements View.OnClickListener{
                                 }
                             }
                         }
-
+                    return 1;
 
                 }
 
